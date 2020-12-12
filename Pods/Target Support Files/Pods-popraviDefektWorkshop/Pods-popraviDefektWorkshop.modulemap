@@ -1,0 +1,6 @@
+framework module Pods_popraviDefektWorkshop {
+  umbrella header "Pods-popraviDefektWorkshop-umbrella.h"
+
+  export *
+  module * { export * }
+}

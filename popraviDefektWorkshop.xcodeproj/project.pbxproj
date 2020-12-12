@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB07D029505451C82416621D /* Pods_popraviDefektWorkshop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF9F6C9B386BE2712F7D21EE /* Pods_popraviDefektWorkshop.framework */; };
 		F4118DCD258527A400FCA766 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4118DCC258527A400FCA766 /* AppDelegate.swift */; };
 		F4118DCF258527A400FCA766 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4118DCE258527A400FCA766 /* ViewController.swift */; };
 		F4118DD2258527A400FCA766 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4118DD0258527A400FCA766 /* Main.storyboard */; };
@@ -15,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8BBC5B697CB3D9386423BC81 /* Pods-popraviDefektWorkshop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-popraviDefektWorkshop.debug.xcconfig"; path = "Target Support Files/Pods-popraviDefektWorkshop/Pods-popraviDefektWorkshop.debug.xcconfig"; sourceTree = "<group>"; };
+		E71A938C6AFEA0B669366481 /* Pods-popraviDefektWorkshop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-popraviDefektWorkshop.release.xcconfig"; path = "Target Support Files/Pods-popraviDefektWorkshop/Pods-popraviDefektWorkshop.release.xcconfig"; sourceTree = "<group>"; };
 		F4118DC9258527A400FCA766 /* popraviDefektWorkshop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = popraviDefektWorkshop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4118DCC258527A400FCA766 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4118DCE258527A400FCA766 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +25,7 @@
 		F4118DD3258527A900FCA766 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F4118DD6258527A900FCA766 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F4118DD8258527A900FCA766 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF9F6C9B386BE2712F7D21EE /* Pods_popraviDefektWorkshop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_popraviDefektWorkshop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +33,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB07D029505451C82416621D /* Pods_popraviDefektWorkshop.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		21DFB1993DDAD68C35300E97 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8BBC5B697CB3D9386423BC81 /* Pods-popraviDefektWorkshop.debug.xcconfig */,
+				E71A938C6AFEA0B669366481 /* Pods-popraviDefektWorkshop.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E0DAD69FC6B426CC892902AD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FF9F6C9B386BE2712F7D21EE /* Pods_popraviDefektWorkshop.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F4118DC0258527A400FCA766 = {
 			isa = PBXGroup;
 			children = (
 				F4118DCB258527A400FCA766 /* popraviDefektWorkshop */,
 				F4118DCA258527A400FCA766 /* Products */,
+				21DFB1993DDAD68C35300E97 /* Pods */,
+				E0DAD69FC6B426CC892902AD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,9 +96,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F4118DDB258527A900FCA766 /* Build configuration list for PBXNativeTarget "popraviDefektWorkshop" */;
 			buildPhases = (
+				484DB90830CE0621AA5FDEAA /* [CP] Check Pods Manifest.lock */,
 				F4118DC5258527A400FCA766 /* Sources */,
 				F4118DC6258527A400FCA766 /* Frameworks */,
 				F4118DC7258527A400FCA766 /* Resources */,
+				F5F31D3371459D2CB9D7BBC5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -129,6 +156,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		484DB90830CE0621AA5FDEAA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-popraviDefektWorkshop-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5F31D3371459D2CB9D7BBC5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-popraviDefektWorkshop/Pods-popraviDefektWorkshop-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-popraviDefektWorkshop/Pods-popraviDefektWorkshop-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-popraviDefektWorkshop/Pods-popraviDefektWorkshop-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F4118DC5258527A400FCA766 /* Sources */ = {
@@ -280,6 +349,7 @@
 		};
 		F4118DDC258527A900FCA766 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8BBC5B697CB3D9386423BC81 /* Pods-popraviDefektWorkshop.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -297,6 +367,7 @@
 		};
 		F4118DDD258527A900FCA766 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E71A938C6AFEA0B669366481 /* Pods-popraviDefektWorkshop.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
