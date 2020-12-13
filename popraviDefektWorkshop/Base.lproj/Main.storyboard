@@ -45,6 +45,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gxj-k1-ps4">
                                 <rect key="frame" x="129" y="208.5" width="62" height="30"/>
                                 <state key="normal" title="Najavi se"/>
+                                <connections>
+                                    <action selector="topButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pKF-sm-Bbq"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ili" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9zx-cO-ptu">
                                 <rect key="frame" x="154" y="241.5" width="12" height="21"/>
@@ -55,6 +58,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hoi-Oj-zN9">
                                 <rect key="frame" x="78" y="265.5" width="164" height="30"/>
                                 <state key="normal" title="Premini kon Registracija"/>
+                                <connections>
+                                    <action selector="bottomButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yhy-Fl-Z4P"/>
+                                </connections>
                             </button>
                             <switch opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0D6-Lu-xcz">
                                 <rect key="frame" x="135.5" y="295" width="51" height="20"/>
@@ -96,26 +102,41 @@
                                 <rect key="frame" x="10" y="438" width="58" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Elektricar"/>
+                                <connections>
+                                    <action selector="tipNaMajstorPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UYU-Ew-tj4"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Wm-ds-nUd">
                                 <rect key="frame" x="78" y="438" width="36" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Stolar"/>
+                                <connections>
+                                    <action selector="tipNaMajstorPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9wR-u5-xJd"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M9B-iB-pnq">
                                 <rect key="frame" x="124" y="438" width="39" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Bravar"/>
+                                <connections>
+                                    <action selector="tipNaMajstorPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f1s-Mn-pNU"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izn-aN-Am3">
                                 <rect key="frame" x="173" y="438" width="64" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Mehanicar"/>
+                                <connections>
+                                    <action selector="tipNaMajstorPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mfi-8W-7Sf"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQA-GH-Jqo">
-                                <rect key="frame" x="247" y="440" width="35" height="28"/>
+                                <rect key="frame" x="247" y="438" width="35" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Moler"/>
+                                <connections>
+                                    <action selector="tipNaMajstorPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="six-Sn-GnV"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -142,7 +163,7 @@
                             <constraint firstItem="PBs-wd-4UC" firstAttribute="top" secondItem="hoi-Oj-zN9" secondAttribute="bottom" constant="2" id="Xbd-gg-SPh"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PZi-EU-oU6" secondAttribute="trailing" constant="10" id="XjZ-cG-Txi"/>
                             <constraint firstItem="adT-eu-CAR" firstAttribute="top" secondItem="GYf-yH-YSa" secondAttribute="bottom" constant="8" id="a0h-6H-dCg"/>
-                            <constraint firstItem="AQA-GH-Jqo" firstAttribute="top" secondItem="Eqp-aN-897" secondAttribute="bottom" constant="10" id="dol-ST-aX9"/>
+                            <constraint firstItem="AQA-GH-Jqo" firstAttribute="top" secondItem="Eqp-aN-897" secondAttribute="bottom" constant="8" id="dol-ST-aX9"/>
                             <constraint firstItem="sK0-nV-5LW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="eIJ-CZ-yIi"/>
                             <constraint firstItem="79P-i4-A0u" firstAttribute="top" secondItem="0D6-Lu-xcz" secondAttribute="bottom" constant="22" id="eOh-d7-ehe"/>
                             <constraint firstItem="hoi-Oj-zN9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ep7-ji-CoQ"/>
@@ -165,9 +186,132 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="MajstorLabel" destination="bih-j2-uFe" id="sZ9-FM-T0X"/>
+                        <outlet property="ObicenLabel" destination="PBs-wd-4UC" id="HBQ-VG-x4i"/>
+                        <outlet property="bottomButton" destination="hoi-Oj-zN9" id="24D-1k-8dV"/>
+                        <outlet property="bravarButton" destination="izn-aN-Am3" id="vz5-3g-5wA"/>
+                        <outlet property="elektricarButton" destination="7H0-AP-tUA" id="U0M-cQ-lXK"/>
+                        <outlet property="emailTextField" destination="GYf-yH-YSa" id="kRo-FV-QeI"/>
+                        <outlet property="mehanicarButton" destination="izn-aN-Am3" id="jGn-Qd-J7x"/>
+                        <outlet property="molerButton" destination="AQA-GH-Jqo" id="VtV-2x-hpC"/>
+                        <outlet property="nameSurnameTextField" destination="79P-i4-A0u" id="1oD-K1-wJV"/>
+                        <outlet property="passwordTextField" destination="adT-eu-CAR" id="DP4-02-9BN"/>
+                        <outlet property="phoneTextField" destination="1HR-uD-lGr" id="0eY-wd-ubd"/>
+                        <outlet property="stolarButton" destination="6Wm-ds-nUd" id="tzD-QO-d4R"/>
+                        <outlet property="tipLabel" destination="Eqp-aN-897" id="Cc6-Lv-Sf9"/>
+                        <outlet property="topButton" destination="Gxj-k1-ps4" id="9nx-dK-CyV"/>
+                        <outlet property="userPIckSwitch" destination="0D6-Lu-xcz" id="CL7-Ix-T1S"/>
+                        <segue destination="5S3-HI-JEI" kind="presentation" identifier="defektSegue" id="Mk5-Ap-zp4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--ObicenKorisnik-Defekt-->
+        <scene sceneID="SKf-g9-Wjs">
+            <objects>
+                <viewController title="ObicenKorisnik-Defekt" id="plo-TJ-M5o" customClass="DefektViewController" customModule="popraviDefektWorkshop" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Pea-f9-9lj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="pWU-IA-qg3">
+                                <rect key="frame" x="0.0" y="74" width="320" height="182"/>
+                            </mapView>
+                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Vnesi opis za defektot" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hXt-jh-PnI">
+                                <rect key="frame" x="10" y="264" width="300" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Izberi tip na majstor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yJk-yl-szd">
+                                <rect key="frame" x="10" y="302" width="128" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZs-hq-jbi">
+                                <rect key="frame" x="10" y="327" width="58" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="Elektricar"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1xS-3h-BEL">
+                                <rect key="frame" x="78" y="327" width="36" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="Stolar"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ar9-kg-wfZ">
+                                <rect key="frame" x="124" y="327" width="39" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="Bravar"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evB-dG-KPF">
+                                <rect key="frame" x="173" y="327" width="64" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="Mehanicar"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJq-YK-5gm">
+                                <rect key="frame" x="247" y="327" width="35" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="Moler"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Lista od :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qoU-XL-CLF">
+                                <rect key="frame" x="10" y="363" width="63" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0WQ-rC-nrM">
+                                <rect key="frame" x="77" y="357" width="55" height="30"/>
+                                <state key="normal" title="Majstori"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="pWU-IA-qg3" firstAttribute="centerX" secondItem="Pea-f9-9lj" secondAttribute="centerX" id="2jL-i0-hkn"/>
+                            <constraint firstItem="hXt-jh-PnI" firstAttribute="top" secondItem="pWU-IA-qg3" secondAttribute="bottom" constant="8" id="30B-5W-VdG"/>
+                            <constraint firstItem="qoU-XL-CLF" firstAttribute="top" secondItem="XZs-hq-jbi" secondAttribute="bottom" constant="8" id="38w-FV-2zZ"/>
+                            <constraint firstItem="XZs-hq-jbi" firstAttribute="top" secondItem="yJk-yl-szd" secondAttribute="bottom" constant="8" id="8fh-cO-yTc"/>
+                            <constraint firstItem="0WQ-rC-nrM" firstAttribute="top" secondItem="1xS-3h-BEL" secondAttribute="bottom" constant="2" id="CWb-1Z-CuQ"/>
+                            <constraint firstItem="evB-dG-KPF" firstAttribute="leading" secondItem="Ar9-kg-wfZ" secondAttribute="trailing" constant="10" id="Ckz-Mx-0uA"/>
+                            <constraint firstItem="Ar9-kg-wfZ" firstAttribute="leading" secondItem="1xS-3h-BEL" secondAttribute="trailing" constant="10" id="GJ7-Ug-HuF"/>
+                            <constraint firstItem="pWU-IA-qg3" firstAttribute="leading" secondItem="TkY-TC-UYK" secondAttribute="leading" id="PNY-fK-tYo"/>
+                            <constraint firstItem="pWU-IA-qg3" firstAttribute="top" secondItem="TkY-TC-UYK" secondAttribute="top" id="PTW-yh-g0r"/>
+                            <constraint firstItem="TkY-TC-UYK" firstAttribute="trailing" secondItem="hXt-jh-PnI" secondAttribute="trailing" constant="10" id="UIA-sT-Rze"/>
+                            <constraint firstItem="TkY-TC-UYK" firstAttribute="trailing" secondItem="pWU-IA-qg3" secondAttribute="trailing" id="aWm-KO-eIY"/>
+                            <constraint firstItem="0WQ-rC-nrM" firstAttribute="leading" secondItem="qoU-XL-CLF" secondAttribute="trailing" constant="4" id="gY1-xx-Pby"/>
+                            <constraint firstItem="yJk-yl-szd" firstAttribute="top" secondItem="hXt-jh-PnI" secondAttribute="bottom" constant="15" id="hDl-62-wlQ"/>
+                            <constraint firstItem="hXt-jh-PnI" firstAttribute="leading" secondItem="TkY-TC-UYK" secondAttribute="leading" constant="10" id="jb4-hc-H8U"/>
+                            <constraint firstItem="1xS-3h-BEL" firstAttribute="leading" secondItem="XZs-hq-jbi" secondAttribute="trailing" constant="10" id="md7-Ah-bwO"/>
+                            <constraint firstItem="yJk-yl-szd" firstAttribute="leading" secondItem="TkY-TC-UYK" secondAttribute="leading" constant="10" id="o9Q-LB-2w9"/>
+                            <constraint firstItem="dJq-YK-5gm" firstAttribute="leading" secondItem="evB-dG-KPF" secondAttribute="trailing" constant="10" id="oRv-85-vL0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="TkY-TC-UYK"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="4jE-wr-qIr"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r5T-tS-EUe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1903.125" y="125"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="g30-ms-fPQ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5S3-HI-JEI" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1P5-dK-CBE">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="plo-TJ-M5o" kind="relationship" relationship="rootViewController" id="m24-5W-Hpj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VXt-Ro-3Vq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="905.625" y="125"/>
         </scene>
     </scenes>
 </document>
