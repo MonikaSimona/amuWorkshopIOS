@@ -31,8 +31,22 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-    
+        if !signUpMode{
+            ObicenLabel.isHidden = false
+            MajstorLabel.isHidden = false
+            userPIckSwitch.isHidden = false
+            nameSurnameTextField.isHidden = false
+            phoneTextField.isHidden = false
+            tipLabel.isHidden = false
+            elektricarButton.isHidden = false
+            stolarButton.isHidden = false
+            bravarButton.isHidden = false
+            mehanicarButton.isHidden = false
+            molerButton.isHidden = false
+        }
+        
     }
+   
 
     func displayAlert(title:String, message:String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -47,7 +61,7 @@ class ViewController: UIViewController {
     @IBAction func topButtonPressed(_ sender: Any) {
         
         if emailTextField.text == "" && passwordTextField.text == "" {
-            displayAlert(title: "Error in form", message: "You must provide both: email and password")
+            displayAlert(title: "Greska vo formata", message: "Treba da vneses email i password")
         }else {
             let activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
             activityIndicator.center = view.center
@@ -57,33 +71,62 @@ class ViewController: UIViewController {
             UIApplication.shared.beginIgnoringInteractionEvents()
             
             if signUpMode {
-                let user = PFUser()
-                user.username = emailTextField.text
-                user.password = passwordTextField.text
-                user.email = emailTextField.text
-                
-                
-                user.signUpInBackground { (success, error) in
-                    activityIndicator.stopAnimating()
-                    UIApplication.shared.endIgnoringInteractionEvents()
-                    if let error = error {
-                        let errorString = error.localizedDescription
-                        self.displayAlert(title: "Error signing up", message: errorString)
-                    } else {
-                        print("Sign up success!")
-                        self.performSegue(withIdentifier: "showUsersSegue", sender: self)
+                if userPIckSwitch.isOn{
+                    // kje se registrira majstor
+                    let user = PFUser()
+                    user.username = emailTextField.text! + "_majstor"
+                    user.password = passwordTextField.text
+                    user.email = emailTextField.text
+                    
+                    
+                    user.signUpInBackground { (success, error) in
+                        activityIndicator.stopAnimating()
+                        UIApplication.shared.endIgnoringInteractionEvents()
+                        if let error = error {
+                            let errorString = error.localizedDescription
+                            self.displayAlert(title: "Greska vo Registracijata", message: errorString)
+                        } else {
+                            print("Uspesna Registracija!")
+                            self.performSegue(withIdentifier: "majstorSegue", sender: self)
+                        }
+                    }
+                    
+                }else{
+                    // kje se registrira obicen korisnik
+                    let user = PFUser()
+                    user.username = emailTextField.text! + "_defekt"
+                    user.password = passwordTextField.text
+                    user.email = emailTextField.text
+                    
+                    
+                    user.signUpInBackground { (success, error) in
+                        activityIndicator.stopAnimating()
+                        UIApplication.shared.endIgnoringInteractionEvents()
+                        if let error = error {
+                            let errorString = error.localizedDescription
+                            self.displayAlert(title: "Greska vo Registracijata", message: errorString)
+                        } else {
+                            print("Uspesna Registracija!")
+                            self.performSegue(withIdentifier: "defektSegue", sender: self)
+                        }
                     }
                 }
+               
             } else {
                 PFUser.logInWithUsername(inBackground: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
                     activityIndicator.stopAnimating()
                     UIApplication.shared.endIgnoringInteractionEvents()
                     if let error = error {
                         let errorString = error.localizedDescription
-                        self.displayAlert(title: "Error logging in", message: errorString)
+                        self.displayAlert(title: "Greska vo Najavata", message: errorString)
                     } else {
-                        print("Log in success!")
-                        self.performSegue(withIdentifier: "showUsersSegue", sender: self)
+                        print("Uspesna Najava")
+                        if user?.username?.components(separatedBy: "_")[1] == "majstor"{
+                            self.performSegue(withIdentifier: "majstorSegue", sender: self)
+                        }else{
+                            self.performSegue(withIdentifier: "defektSegue", sender: self)
+                        }
+                        
                     }
                 }
                 
@@ -92,26 +135,35 @@ class ViewController: UIViewController {
         
     }
     @IBAction func bottomButtonPressed(_ sender: Any) {
-        
-        
-
-        
         if signUpMode {
             signUpMode = false
             topButton.setTitle("Najava", for: .normal)
             bottomButton.setTitle("Premini kon Registracija", for: .normal)
-            ObicenLabel.isHidden = true
-            MajstorLabel.isHidden = true
-            userPIckSwitch.isHidden = true
-            nameSurnameTextField.isHidden = true
-            phoneTextField.isHidden = true
-            tipLabel.isHidden = true
-            elektricarButton.isHidden = true
-            stolarButton.isHidden = true
-            bravarButton.isHidden = true
-            mehanicarButton.isHidden = true
-            molerButton.isHidden = true
-        } else {
+            if userPIckSwitch.isOn{
+                ObicenLabel.isHidden = true
+                MajstorLabel.isHidden = true
+                userPIckSwitch.isHidden = true
+                nameSurnameTextField.isHidden = true
+                phoneTextField.isHidden = true
+                tipLabel.isHidden = true
+                elektricarButton.isHidden = true
+                stolarButton.isHidden = true
+                bravarButton.isHidden = true
+                mehanicarButton.isHidden = true
+                molerButton.isHidden = true
+            }else{
+                tipLabel.isHidden = false
+                elektricarButton.isHidden = false
+                stolarButton.isHidden = false
+                bravarButton.isHidden = false
+                mehanicarButton.isHidden = false
+                molerButton.isHidden = false
+            }
+            
+          
+            
+        
+        }else {
             signUpMode = true
             topButton.setTitle("Registracija", for: .normal)
             bottomButton.setTitle("Premini kon Najava", for: .normal)

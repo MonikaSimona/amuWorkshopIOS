@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import MapKit
 
 class DefektViewController: UIViewController {
 
+    @IBOutlet weak var map: MKMapView!
+    @IBOutlet weak var opisZaDefekt: UITextField!
+    @IBOutlet weak var tipNaMajstorKopce: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -17,6 +21,21 @@ class DefektViewController: UIViewController {
     }
     
 
+    @IBAction func tipNaMjastorPick(_ sender: UIButton) {
+        if sender.titleLabel?.text == "Elektricar"{
+            tipNaMajstorKopce.titleLabel!.text = "Elektricar"
+        }else if sender.titleLabel?.text == "Stolar" {
+            tipNaMajstorKopce.titleLabel!.text = "Stolar"
+        }else if sender.titleLabel?.text == "Bravar" {
+            tipNaMajstorKopce.titleLabel!.text = "Bravar"
+        }else if sender.titleLabel?.text == "Mehanicar" {
+            tipNaMajstorKopce.titleLabel!.text = "Mehanicar"
+        }else if sender.titleLabel?.text == "Moler" {
+            tipNaMajstorKopce.titleLabel!.text = "Moler"
+        }
+    }
+    @IBAction func konListaOdMajstori(_ sender: Any) {
+    }
     /*
     // MARK: - Navigation
 

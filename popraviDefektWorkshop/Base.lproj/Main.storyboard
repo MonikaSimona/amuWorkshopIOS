@@ -114,14 +114,6 @@
                                     <action selector="tipNaMajstorPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9wR-u5-xJd"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M9B-iB-pnq">
-                                <rect key="frame" x="124" y="438" width="39" height="28"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <state key="normal" title="Bravar"/>
-                                <connections>
-                                    <action selector="tipNaMajstorPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f1s-Mn-pNU"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izn-aN-Am3">
                                 <rect key="frame" x="173" y="438" width="64" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -136,6 +128,14 @@
                                 <state key="normal" title="Moler"/>
                                 <connections>
                                     <action selector="tipNaMajstorPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="six-Sn-GnV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M9B-iB-pnq">
+                                <rect key="frame" x="126" y="438" width="39" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="Bravar"/>
+                                <connections>
+                                    <action selector="tipNaMajstorPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f1s-Mn-pNU"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -207,6 +207,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1089" y="115"/>
         </scene>
         <!--ObicenKorisnik-Defekt-->
         <scene sceneID="SKf-g9-Wjs">
@@ -235,26 +236,41 @@
                                 <rect key="frame" x="10" y="327" width="58" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Elektricar"/>
+                                <connections>
+                                    <action selector="tipNaMjastorPick:" destination="plo-TJ-M5o" eventType="touchUpInside" id="ZBg-Kk-hIE"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1xS-3h-BEL">
                                 <rect key="frame" x="78" y="327" width="36" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Stolar"/>
+                                <connections>
+                                    <action selector="tipNaMjastorPick:" destination="plo-TJ-M5o" eventType="touchUpInside" id="t5f-FU-kwB"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ar9-kg-wfZ">
                                 <rect key="frame" x="124" y="327" width="39" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Bravar"/>
+                                <connections>
+                                    <action selector="tipNaMjastorPick:" destination="plo-TJ-M5o" eventType="touchUpInside" id="fsI-HT-zOi"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evB-dG-KPF">
                                 <rect key="frame" x="173" y="327" width="64" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Mehanicar"/>
+                                <connections>
+                                    <action selector="tipNaMjastorPick:" destination="plo-TJ-M5o" eventType="touchUpInside" id="vQr-XX-5DW"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJq-YK-5gm">
                                 <rect key="frame" x="247" y="327" width="35" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Moler"/>
+                                <connections>
+                                    <action selector="tipNaMjastorPick:" destination="plo-TJ-M5o" eventType="touchUpInside" id="oem-sD-JU9"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Lista od :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qoU-XL-CLF">
                                 <rect key="frame" x="10" y="363" width="63" height="18"/>
@@ -265,6 +281,9 @@
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0WQ-rC-nrM">
                                 <rect key="frame" x="77" y="357" width="55" height="30"/>
                                 <state key="normal" title="Majstori"/>
+                                <connections>
+                                    <action selector="konListaOdMajstori:" destination="plo-TJ-M5o" eventType="touchUpInside" id="eXJ-rp-SNv"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -290,10 +309,15 @@
                         <viewLayoutGuide key="safeArea" id="TkY-TC-UYK"/>
                     </view>
                     <navigationItem key="navigationItem" id="4jE-wr-qIr"/>
+                    <connections>
+                        <outlet property="map" destination="pWU-IA-qg3" id="nla-5v-VtW"/>
+                        <outlet property="opisZaDefekt" destination="hXt-jh-PnI" id="sgY-YE-f6o"/>
+                        <outlet property="tipNaMajstorKopce" destination="0WQ-rC-nrM" id="OZd-vt-V2t"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r5T-tS-EUe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1903.125" y="125"/>
+            <point key="canvasLocation" x="2743" y="125"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="g30-ms-fPQ">
@@ -311,7 +335,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VXt-Ro-3Vq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="905.625" y="125"/>
+            <point key="canvasLocation" x="1922" y="125"/>
         </scene>
     </scenes>
 </document>
