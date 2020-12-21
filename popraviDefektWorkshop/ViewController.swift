@@ -28,21 +28,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var molerButton: UIButton!
     var signUpMode = false
     var tipNaMajstor = ""
+    var majstor = true
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         if !signUpMode{
-            ObicenLabel.isHidden = false
-            MajstorLabel.isHidden = false
-            userPIckSwitch.isHidden = false
-            nameSurnameTextField.isHidden = false
-            phoneTextField.isHidden = false
-            tipLabel.isHidden = false
-            elektricarButton.isHidden = false
-            stolarButton.isHidden = false
-            bravarButton.isHidden = false
-            mehanicarButton.isHidden = false
-            molerButton.isHidden = false
+            ObicenLabel.isHidden = true
+            MajstorLabel.isHidden = true
+            userPIckSwitch.isHidden = true
+            nameSurnameTextField.isHidden = true
+            phoneTextField.isHidden = true
+            tipLabel.isHidden = true
+            elektricarButton.isHidden = true
+            stolarButton.isHidden = true
+            bravarButton.isHidden = true
+            mehanicarButton.isHidden = true
+            molerButton.isHidden = true
         }
         
     }
@@ -56,7 +57,8 @@ class ViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
 
-    @IBAction func tipNaMajstorPressed(_ sender: Any) {
+    @IBAction func tipNaMajstorPressed(_ sender: UIButton) {
+        tipNaMajstor = (sender.titleLabel?.text)!
     }
     @IBAction func topButtonPressed(_ sender: Any) {
         
@@ -77,6 +79,9 @@ class ViewController: UIViewController {
                     user.username = emailTextField.text! + "_majstor"
                     user.password = passwordTextField.text
                     user.email = emailTextField.text
+                    user["name"] = nameSurnameTextField.text
+                    user["phone"] = phoneTextField.text
+                    user["type"] = tipNaMajstor
                     
                     
                     user.signUpInBackground { (success, error) in
@@ -97,7 +102,8 @@ class ViewController: UIViewController {
                     user.username = emailTextField.text! + "_defekt"
                     user.password = passwordTextField.text
                     user.email = emailTextField.text
-                    
+                    user["name"] = nameSurnameTextField.text
+                    user["phone"] = phoneTextField.text
                     
                     user.signUpInBackground { (success, error) in
                         activityIndicator.stopAnimating()
@@ -134,36 +140,57 @@ class ViewController: UIViewController {
         }
         
     }
-    @IBAction func bottomButtonPressed(_ sender: Any) {
-        if signUpMode {
-            signUpMode = false
-            topButton.setTitle("Najava", for: .normal)
-            bottomButton.setTitle("Premini kon Registracija", for: .normal)
-            if userPIckSwitch.isOn{
-                ObicenLabel.isHidden = true
-                MajstorLabel.isHidden = true
-                userPIckSwitch.isHidden = true
-                nameSurnameTextField.isHidden = true
-                phoneTextField.isHidden = true
-                tipLabel.isHidden = true
-                elektricarButton.isHidden = true
-                stolarButton.isHidden = true
-                bravarButton.isHidden = true
-                mehanicarButton.isHidden = true
-                molerButton.isHidden = true
-            }else{
+    
+    
+    @IBAction func userSwitchChanged(_ sender: UISwitch) {
+        
+        if signUpMode  {
+            if sender.isOn{
+                ObicenLabel.isHidden = false
+                MajstorLabel.isHidden = false
+                userPIckSwitch.isHidden = false
+                nameSurnameTextField.isHidden = false
+                phoneTextField.isHidden = false
                 tipLabel.isHidden = false
                 elektricarButton.isHidden = false
                 stolarButton.isHidden = false
                 bravarButton.isHidden = false
                 mehanicarButton.isHidden = false
                 molerButton.isHidden = false
+                
+            }else{
+                tipLabel.isHidden = true
+                elektricarButton.isHidden = true
+                stolarButton.isHidden = true
+                bravarButton.isHidden = true
+                mehanicarButton.isHidden = true
+                molerButton.isHidden = true
+                
             }
-            
-          
-            
+        }
         
-        }else {
+    }
+    @IBAction func bottomButtonPressed(_ sender: Any) {
+        if signUpMode { //vo najava
+            signUpMode = false
+            topButton.setTitle("Najava", for: .normal)
+            bottomButton.setTitle("Premini kon Registracija", for: .normal)
+            
+            ObicenLabel.isHidden = true
+            MajstorLabel.isHidden = true
+            userPIckSwitch.isHidden = true
+            nameSurnameTextField.isHidden = true
+            phoneTextField.isHidden = true
+            tipLabel.isHidden = true
+            elektricarButton.isHidden = true
+            stolarButton.isHidden = true
+            bravarButton.isHidden = true
+            mehanicarButton.isHidden = true
+            molerButton.isHidden = true
+           
+           
+        
+        }else { // vo registracija
             signUpMode = true
             topButton.setTitle("Registracija", for: .normal)
             bottomButton.setTitle("Premini kon Najava", for: .normal)
