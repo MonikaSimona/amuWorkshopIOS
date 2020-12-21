@@ -59,6 +59,7 @@ class ViewController: UIViewController {
 
     @IBAction func tipNaMajstorPressed(_ sender: UIButton) {
         tipNaMajstor = (sender.titleLabel?.text)!
+        sender.setTitleColor(.green, for: .normal)
     }
     @IBAction func topButtonPressed(_ sender: Any) {
         
