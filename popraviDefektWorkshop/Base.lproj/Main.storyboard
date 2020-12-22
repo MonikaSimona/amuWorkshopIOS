@@ -213,6 +213,70 @@
             </objects>
             <point key="canvasLocation" x="1089" y="115"/>
         </scene>
+        <!--BaranjaKajKorisnik-->
+        <scene sceneID="HeI-DJ-toC">
+            <objects>
+                <tableViewController title="BaranjaKajKorisnik" id="y1Z-Kd-StU" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="vc7-iK-hcq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="akM-Ci-geC" detailTextLabel="Abn-6t-EKl" style="IBUITableViewCellStyleSubtitle" id="dm8-m5-sLq">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dm8-m5-sLq" id="UcZ-6W-A6i">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="akM-Ci-geC">
+                                            <rect key="frame" x="16" y="5" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Abn-6t-EKl">
+                                            <rect key="frame" x="16" y="25.5" width="44" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="NeV-zK-3wL" kind="show" identifier="detaliBaranjeKorisnikSegue" id="zGU-WI-jdJ"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="y1Z-Kd-StU" id="RD4-lV-uei"/>
+                            <outlet property="delegate" destination="y1Z-Kd-StU" id="eFX-Sq-hJK"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Baranja Korisnik" id="WVD-5Z-7gV"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lxO-ND-Hx5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2595" y="-565"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="GAN-Ie-8uv">
+            <objects>
+                <navigationController id="Uno-Ju-cgo" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qJS-k5-eL1">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="y1Z-Kd-StU" kind="relationship" relationship="rootViewController" id="vhj-Uq-ulZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h4S-Yq-iFC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1922" y="-564"/>
+        </scene>
         <!--ObicenKorisnik-Defekt-->
         <scene sceneID="SKf-g9-Wjs">
             <objects>
@@ -337,7 +401,11 @@
                                 <action selector="odjava:" destination="plo-TJ-M5o" id="Sd2-bb-Gwo"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Baranja" id="avF-S3-FGN"/>
+                        <barButtonItem key="rightBarButtonItem" title="Baranja" id="avF-S3-FGN">
+                            <connections>
+                                <segue destination="y1Z-Kd-StU" kind="show" identifier="baranjaKorisnikSegue" id="vEz-7u-eDj"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="defektLocLabel" destination="dE6-Sf-5P4" id="rPT-eM-h5w"/>
@@ -380,6 +448,250 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tSz-Di-B47" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3274" y="125"/>
+        </scene>
+        <!--Detali za baranje kaj majstor-->
+        <scene sceneID="otP-Ga-QKU">
+            <objects>
+                <viewController title="Detali za baranje kaj majstor" id="X2f-aa-IRM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oyU-Pg-6Ca">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pobarano na:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GKV-AP-6oo">
+                                <rect key="frame" x="10" y="74" width="91" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Opis na defekt:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oEv-18-G6H">
+                                <rect key="frame" x="10" y="100" width="104" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Pobarano od:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NVF-Ol-vCy">
+                                <rect key="frame" x="10" y="126" width="92" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email na korisnik:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ccg-mW-9BO">
+                                <rect key="frame" x="10" y="152" width="118" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Telefon na korisnik:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bc7-2f-rK0">
+                                <rect key="frame" x="10" y="178" width="131.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="b4o-3q-rUW">
+                                <rect key="frame" x="0.0" y="204" width="320" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="Wpv-tH-x5l"/>
+                                    <constraint firstAttribute="width" constant="320" id="tNb-q9-Loc"/>
+                                </constraints>
+                            </mapView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cena na ponunda" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ni7-U0-2vT">
+                                <rect key="frame" x="10" y="340" width="300" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Datum na ponuda" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kns-TA-Dqy">
+                                <rect key="frame" x="10" y="378" width="300" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ydZ-hZ-cER">
+                                <rect key="frame" x="31.5" y="430" width="106" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="ISPRATI PONUDA"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ekY-jB-S1q">
+                                <rect key="frame" x="187.5" y="430" width="101" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="ODBIJ BARANJE"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Ni7-U0-2vT" firstAttribute="top" secondItem="b4o-3q-rUW" secondAttribute="bottom" constant="8" id="0EG-DM-PBW"/>
+                            <constraint firstItem="fsV-00-3DI" firstAttribute="trailing" secondItem="b4o-3q-rUW" secondAttribute="trailing" id="2Mb-Ne-cKC"/>
+                            <constraint firstItem="ekY-jB-S1q" firstAttribute="top" secondItem="kns-TA-Dqy" secondAttribute="bottom" constant="22" id="2kM-AJ-caH"/>
+                            <constraint firstItem="ydZ-hZ-cER" firstAttribute="leading" secondItem="fsV-00-3DI" secondAttribute="leading" constant="31.5" id="7Io-Ic-fzs"/>
+                            <constraint firstItem="fsV-00-3DI" firstAttribute="trailing" secondItem="Ni7-U0-2vT" secondAttribute="trailing" constant="10" id="90h-s2-ddz"/>
+                            <constraint firstItem="Ni7-U0-2vT" firstAttribute="leading" secondItem="fsV-00-3DI" secondAttribute="leading" constant="10" id="Brp-vy-8BC"/>
+                            <constraint firstItem="ccg-mW-9BO" firstAttribute="top" secondItem="NVF-Ol-vCy" secondAttribute="bottom" constant="8" id="FsW-Sg-IWt"/>
+                            <constraint firstItem="oEv-18-G6H" firstAttribute="top" secondItem="GKV-AP-6oo" secondAttribute="bottom" constant="8" id="Gjo-yW-oUR"/>
+                            <constraint firstItem="kns-TA-Dqy" firstAttribute="leading" secondItem="fsV-00-3DI" secondAttribute="leading" constant="10" id="ICC-0l-2oy"/>
+                            <constraint firstItem="GKV-AP-6oo" firstAttribute="leading" secondItem="fsV-00-3DI" secondAttribute="leading" constant="10" id="JI5-2R-ChE"/>
+                            <constraint firstItem="fsV-00-3DI" firstAttribute="trailing" secondItem="ekY-jB-S1q" secondAttribute="trailing" constant="31.5" id="P17-Nu-oeu"/>
+                            <constraint firstItem="oEv-18-G6H" firstAttribute="leading" secondItem="fsV-00-3DI" secondAttribute="leading" constant="10" id="Rb7-RX-yqx"/>
+                            <constraint firstItem="NVF-Ol-vCy" firstAttribute="top" secondItem="oEv-18-G6H" secondAttribute="bottom" constant="8" id="bpo-mU-5Yb"/>
+                            <constraint firstItem="bc7-2f-rK0" firstAttribute="top" secondItem="ccg-mW-9BO" secondAttribute="bottom" constant="8" id="dmQ-W6-Lhp"/>
+                            <constraint firstItem="GKV-AP-6oo" firstAttribute="top" secondItem="fsV-00-3DI" secondAttribute="top" constant="10" id="fd6-5y-wqp"/>
+                            <constraint firstItem="b4o-3q-rUW" firstAttribute="leading" secondItem="fsV-00-3DI" secondAttribute="leading" id="rhC-Z5-mq8"/>
+                            <constraint firstItem="ccg-mW-9BO" firstAttribute="leading" secondItem="fsV-00-3DI" secondAttribute="leading" constant="10" id="s7W-Vz-lox"/>
+                            <constraint firstItem="ydZ-hZ-cER" firstAttribute="top" secondItem="kns-TA-Dqy" secondAttribute="bottom" constant="22" id="uxD-ua-M8A"/>
+                            <constraint firstItem="fsV-00-3DI" firstAttribute="trailing" secondItem="kns-TA-Dqy" secondAttribute="trailing" constant="10" id="vFN-eW-4If"/>
+                            <constraint firstItem="b4o-3q-rUW" firstAttribute="top" secondItem="bc7-2f-rK0" secondAttribute="bottom" constant="8" id="vsr-3o-gTf"/>
+                            <constraint firstItem="kns-TA-Dqy" firstAttribute="top" secondItem="Ni7-U0-2vT" secondAttribute="bottom" constant="8" id="wx1-pg-j25"/>
+                            <constraint firstItem="bc7-2f-rK0" firstAttribute="leading" secondItem="fsV-00-3DI" secondAttribute="leading" constant="10" id="zeu-QC-eSm"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fsV-00-3DI"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Detali" id="YHa-E5-ACR">
+                        <barButtonItem key="leftBarButtonItem" title="Baranja" id="qDo-Ou-6WS"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WCb-jn-uuz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3274" y="843"/>
+        </scene>
+        <!--Detali za rabota-->
+        <scene sceneID="JXg-uB-nx5">
+            <objects>
+                <viewController title="Detali za rabota" id="TOe-Ys-YYu" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IOb-2e-QsY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Datum na rabotenje:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZMI-Nb-vuO">
+                                <rect key="frame" x="10" y="74" width="139" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDL-hr-num">
+                                <rect key="frame" x="10" y="100" width="48.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Korisnik:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JYA-CR-F0U">
+                                <rect key="frame" x="10" y="126" width="58.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email na korisnik:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RVr-0b-grN">
+                                <rect key="frame" x="10" y="152" width="118" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adresa na defekt:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GxY-Hb-CIC">
+                                <rect key="frame" x="10" y="178" width="120.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PsZ-ac-IVK">
+                                <rect key="frame" x="224" y="172" width="86" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Kon Lokacija"/>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zavrseno na :" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x1r-rm-9w6">
+                                <rect key="frame" x="10" y="217" width="300" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DB0-ZY-AKB">
+                                <rect key="frame" x="10" y="269" width="300" height="149"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="149" id="3Ez-Dh-cZB"/>
+                                    <constraint firstAttribute="width" constant="300" id="o1o-9C-pPc"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ela-UO-j0n">
+                                <rect key="frame" x="123" y="430" width="74" height="30"/>
+                                <state key="normal" title="Izberi Slika"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="PsZ-ac-IVK" secondAttribute="trailing" constant="10" id="0Wv-e8-djj"/>
+                            <constraint firstItem="RVr-0b-grN" firstAttribute="leading" secondItem="a6Y-dc-H2a" secondAttribute="leading" constant="10" id="5ne-Yt-ztF"/>
+                            <constraint firstItem="x1r-rm-9w6" firstAttribute="leading" secondItem="a6Y-dc-H2a" secondAttribute="leading" constant="10" id="6pf-VZ-xbb"/>
+                            <constraint firstItem="DB0-ZY-AKB" firstAttribute="leading" secondItem="a6Y-dc-H2a" secondAttribute="leading" constant="10" id="74Y-bk-teG"/>
+                            <constraint firstItem="PDL-hr-num" firstAttribute="leading" secondItem="a6Y-dc-H2a" secondAttribute="leading" constant="10" id="Atb-Zh-cjT"/>
+                            <constraint firstItem="ZMI-Nb-vuO" firstAttribute="leading" secondItem="a6Y-dc-H2a" secondAttribute="leading" constant="10" id="ElY-Bc-lR6"/>
+                            <constraint firstItem="Ela-UO-j0n" firstAttribute="top" secondItem="DB0-ZY-AKB" secondAttribute="bottom" constant="12" id="Gym-Bg-SxJ"/>
+                            <constraint firstItem="JYA-CR-F0U" firstAttribute="top" secondItem="PDL-hr-num" secondAttribute="bottom" constant="8" id="I3F-BG-WTt"/>
+                            <constraint firstItem="a6Y-dc-H2a" firstAttribute="trailing" secondItem="x1r-rm-9w6" secondAttribute="trailing" constant="10" id="K7e-R4-al0"/>
+                            <constraint firstItem="ZMI-Nb-vuO" firstAttribute="top" secondItem="a6Y-dc-H2a" secondAttribute="top" constant="10" id="LLh-8a-x3E"/>
+                            <constraint firstItem="x1r-rm-9w6" firstAttribute="top" secondItem="GxY-Hb-CIC" secondAttribute="bottom" constant="21" id="SyM-rn-9ki"/>
+                            <constraint firstItem="PsZ-ac-IVK" firstAttribute="top" secondItem="RVr-0b-grN" secondAttribute="bottom" constant="2" id="U7o-5N-gN0"/>
+                            <constraint firstItem="Ela-UO-j0n" firstAttribute="centerX" secondItem="IOb-2e-QsY" secondAttribute="centerX" id="dBk-jO-SMd"/>
+                            <constraint firstItem="PsZ-ac-IVK" firstAttribute="leading" secondItem="GxY-Hb-CIC" secondAttribute="trailing" constant="93.5" id="dwL-FD-XiF"/>
+                            <constraint firstItem="DB0-ZY-AKB" firstAttribute="top" secondItem="x1r-rm-9w6" secondAttribute="bottom" constant="22" id="fMj-Uz-lJV"/>
+                            <constraint firstItem="GxY-Hb-CIC" firstAttribute="leading" secondItem="a6Y-dc-H2a" secondAttribute="leading" constant="10" id="gMR-mT-ZbG"/>
+                            <constraint firstItem="GxY-Hb-CIC" firstAttribute="top" secondItem="RVr-0b-grN" secondAttribute="bottom" constant="8" id="m7F-Cs-rEB"/>
+                            <constraint firstItem="a6Y-dc-H2a" firstAttribute="trailing" secondItem="DB0-ZY-AKB" secondAttribute="trailing" constant="10" id="oN1-ko-kOc"/>
+                            <constraint firstItem="PDL-hr-num" firstAttribute="top" secondItem="ZMI-Nb-vuO" secondAttribute="bottom" constant="8" id="qZI-He-AoU"/>
+                            <constraint firstItem="JYA-CR-F0U" firstAttribute="leading" secondItem="a6Y-dc-H2a" secondAttribute="leading" constant="10" id="qb7-Lx-EZc"/>
+                            <constraint firstItem="RVr-0b-grN" firstAttribute="top" secondItem="JYA-CR-F0U" secondAttribute="bottom" constant="8" id="xO8-Py-lmZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="a6Y-dc-H2a"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Detali" id="11j-gJ-krO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LOk-Lc-yBW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3273.75" y="1557.5"/>
+        </scene>
+        <!--Zavrseni/Zakazni Raboti-->
+        <scene sceneID="IN4-SJ-f93">
+            <objects>
+                <tableViewController title="Zavrseni/Zakazni Raboti" id="Rj5-HT-zgP" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="0aK-gS-bXs">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="detaliRabotaSegue" id="scW-wH-oB7">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="scW-wH-oB7" id="upE-l5-ebA">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="TOe-Ys-YYu" kind="show" id="mgr-IW-4Zm"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Rj5-HT-zgP" id="Uv9-uS-Svy"/>
+                            <outlet property="delegate" destination="Rj5-HT-zgP" id="I2x-JG-Ao2"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Raboti" id="60c-QV-lbB"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pAa-DK-zyM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1922" y="1558"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="oMj-Hr-sCb">
+            <objects>
+                <navigationController id="PLm-no-HRw" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pwe-EZ-yZ8">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Rj5-HT-zgP" kind="relationship" relationship="rootViewController" id="hcS-z1-Beg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9XH-lc-52A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1088" y="1558"/>
         </scene>
         <!--Portfolio Table View Controller-->
         <scene sceneID="om6-dW-IJn">
@@ -431,10 +743,10 @@
             </objects>
             <point key="canvasLocation" x="1922" y="125"/>
         </scene>
-        <!--Baranja-->
+        <!--BaranjaKajMajstor-->
         <scene sceneID="lW5-jd-5j5">
             <objects>
-                <tableViewController title="Baranja" id="Q4C-VW-VJd" customClass="MajstorTableViewController" customModule="popraviDefektWorkshop" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="BaranjaKajMajstor" id="Q4C-VW-VJd" customClass="MajstorTableViewController" customModule="popraviDefektWorkshop" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="c7D-WI-d7R">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -447,6 +759,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="fqk-Q7-kTL" kind="show" identifier="detaliBaranjeMajstorSegue" id="mnj-Jg-BLU"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -460,7 +775,11 @@
                                 <action selector="Odjava:" destination="Q4C-VW-VJd" id="jdY-Pu-bV5"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Raboti" id="L1H-zS-5bD"/>
+                        <barButtonItem key="rightBarButtonItem" title="Raboti" id="L1H-zS-5bD">
+                            <connections>
+                                <segue destination="Rj5-HT-zgP" kind="show" identifier="rabotiSegue" id="FRn-jQ-XDr"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yWX-AT-Wbk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -483,6 +802,126 @@
             </objects>
             <point key="canvasLocation" x="1088" y="843"/>
         </scene>
+        <!--Detali za Baranje kaj Korisnik-->
+        <scene sceneID="5MP-x9-v4z">
+            <objects>
+                <viewController title="Detali za Baranje kaj Korisnik" id="3G0-V1-ViY" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="m58-gS-SEr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pobarano na:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Aw-sC-bAm">
+                                <rect key="frame" x="10" y="74" width="90.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tip na majstor:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9v3-DY-IhJ">
+                                <rect key="frame" x="10" y="100" width="101.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Defekt:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qum-6q-LSh">
+                                <rect key="frame" x="10" y="126" width="50" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ime i prezime na majstor:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNg-zZ-NSc">
+                                <rect key="frame" x="10" y="152" width="171.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email na majstor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zaH-z6-l7M">
+                                <rect key="frame" x="10" y="178" width="112.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Telefon na majstor:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K9b-0y-W2n">
+                                <rect key="frame" x="10" y="204" width="130" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status na baranje:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uld-K7-KZ1">
+                                <rect key="frame" x="10" y="230" width="124" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qRf-1p-lMu">
+                                <rect key="frame" x="130" y="254" width="60" height="32"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="OTKAZI"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ponuda od majstor:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RNi-eQ-RG6">
+                                <rect key="frame" x="10" y="298" width="133" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bv6-nA-AfY">
+                                <rect key="frame" x="162" y="294" width="53" height="30"/>
+                                <state key="normal" title="PRIFATI"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VhI-Yf-J9Q">
+                                <rect key="frame" x="235" y="294" width="44" height="30"/>
+                                <state key="normal" title="ODBIJ"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zakazana/[Zavrsena] rabota na datum:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNC-hA-QS7">
+                                <rect key="frame" x="10" y="331" width="266" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N02-Nf-DPX">
+                                <rect key="frame" x="0.0" y="357" width="320" height="123"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="9v3-DY-IhJ" firstAttribute="top" secondItem="2Aw-sC-bAm" secondAttribute="bottom" constant="8" id="1KT-vf-dq5"/>
+                            <constraint firstItem="zaH-z6-l7M" firstAttribute="top" secondItem="zNg-zZ-NSc" secondAttribute="bottom" constant="8" id="1cC-v8-mBd"/>
+                            <constraint firstItem="N02-Nf-DPX" firstAttribute="leading" secondItem="Jka-Gn-Pwa" secondAttribute="leading" id="1fn-wO-VQR"/>
+                            <constraint firstItem="qum-6q-LSh" firstAttribute="top" secondItem="9v3-DY-IhJ" secondAttribute="bottom" constant="8" id="3ZE-nz-Jba"/>
+                            <constraint firstAttribute="bottom" secondItem="N02-Nf-DPX" secondAttribute="bottom" id="Ac7-p1-c3o"/>
+                            <constraint firstItem="Jka-Gn-Pwa" firstAttribute="trailing" secondItem="N02-Nf-DPX" secondAttribute="trailing" id="Br1-Xd-WTc"/>
+                            <constraint firstItem="VhI-Yf-J9Q" firstAttribute="top" secondItem="qRf-1p-lMu" secondAttribute="bottom" constant="8" id="D1p-r1-j69"/>
+                            <constraint firstItem="RNi-eQ-RG6" firstAttribute="leading" secondItem="Jka-Gn-Pwa" secondAttribute="leading" constant="10" id="ERO-fo-2Ja"/>
+                            <constraint firstItem="WNC-hA-QS7" firstAttribute="leading" secondItem="Jka-Gn-Pwa" secondAttribute="leading" constant="10" id="Hed-FE-1fK"/>
+                            <constraint firstItem="qRf-1p-lMu" firstAttribute="top" secondItem="Uld-K7-KZ1" secondAttribute="bottom" constant="6" id="JE0-yD-g0o"/>
+                            <constraint firstItem="zNg-zZ-NSc" firstAttribute="top" secondItem="qum-6q-LSh" secondAttribute="bottom" constant="8" id="KH8-kA-sk9"/>
+                            <constraint firstItem="bv6-nA-AfY" firstAttribute="leading" secondItem="RNi-eQ-RG6" secondAttribute="trailing" constant="19" id="KTt-OV-fmE"/>
+                            <constraint firstItem="K9b-0y-W2n" firstAttribute="top" secondItem="zaH-z6-l7M" secondAttribute="bottom" constant="8" id="NmM-Wz-kzW"/>
+                            <constraint firstItem="Uld-K7-KZ1" firstAttribute="leading" secondItem="Jka-Gn-Pwa" secondAttribute="leading" constant="10" id="Q8G-Vz-Zel"/>
+                            <constraint firstItem="2Aw-sC-bAm" firstAttribute="leading" secondItem="Jka-Gn-Pwa" secondAttribute="leading" constant="10" id="XB0-FL-yUn"/>
+                            <constraint firstItem="RNi-eQ-RG6" firstAttribute="top" secondItem="qRf-1p-lMu" secondAttribute="bottom" constant="12" id="Xto-xh-l0D"/>
+                            <constraint firstItem="qRf-1p-lMu" firstAttribute="centerX" secondItem="m58-gS-SEr" secondAttribute="centerX" id="Ydi-S4-bvB"/>
+                            <constraint firstItem="N02-Nf-DPX" firstAttribute="top" secondItem="WNC-hA-QS7" secondAttribute="bottom" constant="8" id="aTg-Lh-y17"/>
+                            <constraint firstItem="bv6-nA-AfY" firstAttribute="top" secondItem="qRf-1p-lMu" secondAttribute="bottom" constant="8" id="asR-dh-Z0j"/>
+                            <constraint firstItem="VhI-Yf-J9Q" firstAttribute="leading" secondItem="bv6-nA-AfY" secondAttribute="trailing" constant="20" id="fFM-vR-Tgk"/>
+                            <constraint firstItem="9v3-DY-IhJ" firstAttribute="leading" secondItem="Jka-Gn-Pwa" secondAttribute="leading" constant="10" id="hwA-RN-5hp"/>
+                            <constraint firstItem="WNC-hA-QS7" firstAttribute="top" secondItem="RNi-eQ-RG6" secondAttribute="bottom" constant="15" id="jgH-17-AFE"/>
+                            <constraint firstItem="Uld-K7-KZ1" firstAttribute="top" secondItem="K9b-0y-W2n" secondAttribute="bottom" constant="8" id="lR4-l7-mwW"/>
+                            <constraint firstItem="qum-6q-LSh" firstAttribute="leading" secondItem="Jka-Gn-Pwa" secondAttribute="leading" constant="10" id="lXQ-YU-j9V"/>
+                            <constraint firstItem="zNg-zZ-NSc" firstAttribute="leading" secondItem="Jka-Gn-Pwa" secondAttribute="leading" constant="10" id="tUf-XS-des"/>
+                            <constraint firstItem="2Aw-sC-bAm" firstAttribute="top" secondItem="Jka-Gn-Pwa" secondAttribute="top" constant="10" id="u11-7J-hWo"/>
+                            <constraint firstItem="K9b-0y-W2n" firstAttribute="leading" secondItem="Jka-Gn-Pwa" secondAttribute="leading" constant="10" id="uIN-6N-ih2"/>
+                            <constraint firstItem="zaH-z6-l7M" firstAttribute="leading" secondItem="Jka-Gn-Pwa" secondAttribute="leading" constant="10" id="w8M-3b-Kc3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Jka-Gn-Pwa"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Detali" id="6ZL-fd-xvl">
+                        <barButtonItem key="leftBarButtonItem" title="Baranja" style="plain" id="iPY-zJ-q1t"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="foS-YM-qiF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3945" y="-565"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="ah5-Xa-j1e">
             <objects>
@@ -501,5 +940,64 @@
             </objects>
             <point key="canvasLocation" x="3945" y="125"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ckR-I8-oiY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NeV-zK-3wL" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="e0a-Zg-Drj">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="3G0-V1-ViY" kind="relationship" relationship="rootViewController" id="o0V-6J-vH4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Szy-Rn-BrO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3274" y="-565"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="VG3-ab-kaQ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fqk-Q7-kTL" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qzv-c2-uHi">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="X2f-aa-IRM" kind="relationship" relationship="rootViewController" id="h7C-s8-J2j"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="beV-Zd-DMG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2595" y="843"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zd4-af-4ff">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6ME-IR-gtX" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="B9l-WO-zWU">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="TOe-Ys-YYu" kind="relationship" relationship="rootViewController" id="1Xa-Zv-6c2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3XQ-y1-NmW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2595" y="1558"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="FRn-jQ-XDr"/>
+        <segue reference="mgr-IW-4Zm"/>
+        <segue reference="vEz-7u-eDj"/>
+    </inferredMetricsTieBreakers>
 </document>
