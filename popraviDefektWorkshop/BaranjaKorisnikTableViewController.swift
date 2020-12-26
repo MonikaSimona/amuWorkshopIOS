@@ -1,83 +1,46 @@
 //
-//  ListaOdMajstoriTableViewController.swift
+//  BaranjaKorisnikTableViewController.swift
 //  popraviDefektWorkshop
 //
-//  Created by simona on 12/19/20.
+//  Created by simona on 12/24/20.
 //  Copyright © 2020 simona. All rights reserved.
 //
 
 import UIKit
-import Parse
 
-class ListaOdMajstoriTableViewController: UITableViewController {
-    
-    var majstoriEmail = [String]()
-    var majstoriName = [String]()
-    var objectIds = [String]()
+class BaranjaKorisnikTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateTable()
 
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
+    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return majstoriEmail.count
+        return 0
     }
 
-    
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "majstorCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        
-//        cell.textLabel?.text = majstoriName[indexPath.row]
-        cell.textLabel?.text = majstoriEmail[indexPath.row]
+        // Configure the cell...
 
         return cell
     }
-    func updateTable () {
-        self.majstoriEmail.removeAll()
-        self.majstoriName.removeAll()
-        self.objectIds.removeAll()
-        
-        let query = PFUser.query()
-        query?.whereKey("type", equalTo: "Elektricar")
-//        query?.whereKey("username" ,notEqualTo: PFUser.current()?.username ?? "")
-        query?.findObjectsInBackground(block: { (users, error) in
-            if error != nil {
-                print(error?.localizedDescription ?? "")
-            }else if let users = users{
-                for object in users {
-                    if let user = object as? PFUser{
-                        if let email = user.email {
-                            print(email)
-//                            if let name = user["name"] as? String{
-                                if let objectId = user.objectId{
-//                                    print(name)
-                                    self.majstoriEmail.append(email)
-//                                    self.majstoriName.append(name)
-                                    self.objectIds.append(objectId)
-                                    
-                                    self.tableView.reloadData()
-                                }
-//                            }
-                            
-                        }
-                    }
-                }
-            }
-        });
-        
-    }
-    
-    
+    */
 
     /*
     // Override to support conditional editing of the table view.

@@ -15,8 +15,14 @@
 		F4118DD7258527A900FCA766 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4118DD5258527A900FCA766 /* LaunchScreen.storyboard */; };
 		F4118DDF258671CF00FCA766 /* DefektViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4118DDE258671CF00FCA766 /* DefektViewController.swift */; };
 		F416EED9258E3554009A135B /* ListaOdMajstoriTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F416EED8258E3553009A135B /* ListaOdMajstoriTableViewController.swift */; };
-		F416EEDB2590FC6E009A135B /* MajstorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F416EEDA2590FC6D009A135B /* MajstorTableViewController.swift */; };
-		F416EEDD2591090A009A135B /* PortfolioTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F416EEDC2591090A009A135B /* PortfolioTableViewController.swift */; };
+		F416EEDF2594ACBD009A135B /* PortfolioMajstorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F416EEDE2594ACBC009A135B /* PortfolioMajstorTableViewController.swift */; };
+		F416EEE12594ADAB009A135B /* BaranjaMajstorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F416EEE02594ADAB009A135B /* BaranjaMajstorTableViewController.swift */; };
+		F416EEE32594AF86009A135B /* DetaliBaranjeMajstorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F416EEE22594AF85009A135B /* DetaliBaranjeMajstorViewController.swift */; };
+		F416EEE52594B0F2009A135B /* BaranjaKorisnikTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F416EEE42594B0F2009A135B /* BaranjaKorisnikTableViewController.swift */; };
+		F416EEE72594B15F009A135B /* DetaliBaranjeKorisnikViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F416EEE62594B15F009A135B /* DetaliBaranjeKorisnikViewController.swift */; };
+		F416EEE92594B232009A135B /* Zakazani_ZavrseniRabotiTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F416EEE82594B231009A135B /* Zakazani_ZavrseniRabotiTableViewController.swift */; };
+		F416EEEB2594B39E009A135B /* DetaliRabotaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F416EEEA2594B39E009A135B /* DetaliRabotaViewController.swift */; };
+		F416EEED25974E66009A135B /* PortfolioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F416EEEC25974E66009A135B /* PortfolioTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,8 +37,14 @@
 		F4118DD8258527A900FCA766 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4118DDE258671CF00FCA766 /* DefektViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefektViewController.swift; sourceTree = "<group>"; };
 		F416EED8258E3553009A135B /* ListaOdMajstoriTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListaOdMajstoriTableViewController.swift; sourceTree = "<group>"; };
-		F416EEDA2590FC6D009A135B /* MajstorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MajstorTableViewController.swift; sourceTree = "<group>"; };
-		F416EEDC2591090A009A135B /* PortfolioTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioTableViewController.swift; sourceTree = "<group>"; };
+		F416EEDE2594ACBC009A135B /* PortfolioMajstorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioMajstorTableViewController.swift; sourceTree = "<group>"; };
+		F416EEE02594ADAB009A135B /* BaranjaMajstorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaranjaMajstorTableViewController.swift; sourceTree = "<group>"; };
+		F416EEE22594AF85009A135B /* DetaliBaranjeMajstorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetaliBaranjeMajstorViewController.swift; sourceTree = "<group>"; };
+		F416EEE42594B0F2009A135B /* BaranjaKorisnikTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaranjaKorisnikTableViewController.swift; sourceTree = "<group>"; };
+		F416EEE62594B15F009A135B /* DetaliBaranjeKorisnikViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetaliBaranjeKorisnikViewController.swift; sourceTree = "<group>"; };
+		F416EEE82594B231009A135B /* Zakazani_ZavrseniRabotiTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zakazani_ZavrseniRabotiTableViewController.swift; sourceTree = "<group>"; };
+		F416EEEA2594B39E009A135B /* DetaliRabotaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetaliRabotaViewController.swift; sourceTree = "<group>"; };
+		F416EEEC25974E66009A135B /* PortfolioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioTableViewCell.swift; sourceTree = "<group>"; };
 		FF9F6C9B386BE2712F7D21EE /* Pods_popraviDefektWorkshop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_popraviDefektWorkshop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -89,8 +101,14 @@
 				F4118DCC258527A400FCA766 /* AppDelegate.swift */,
 				F4118DCE258527A400FCA766 /* ViewController.swift */,
 				F4118DD0258527A400FCA766 /* Main.storyboard */,
-				F416EEDC2591090A009A135B /* PortfolioTableViewController.swift */,
-				F416EEDA2590FC6D009A135B /* MajstorTableViewController.swift */,
+				F416EEEC25974E66009A135B /* PortfolioTableViewCell.swift */,
+				F416EEDE2594ACBC009A135B /* PortfolioMajstorTableViewController.swift */,
+				F416EEE02594ADAB009A135B /* BaranjaMajstorTableViewController.swift */,
+				F416EEE22594AF85009A135B /* DetaliBaranjeMajstorViewController.swift */,
+				F416EEE42594B0F2009A135B /* BaranjaKorisnikTableViewController.swift */,
+				F416EEE62594B15F009A135B /* DetaliBaranjeKorisnikViewController.swift */,
+				F416EEE82594B231009A135B /* Zakazani_ZavrseniRabotiTableViewController.swift */,
+				F416EEEA2594B39E009A135B /* DetaliRabotaViewController.swift */,
 				F416EED8258E3553009A135B /* ListaOdMajstoriTableViewController.swift */,
 				F4118DDE258671CF00FCA766 /* DefektViewController.swift */,
 				F4118DD3258527A900FCA766 /* Assets.xcassets */,
@@ -215,10 +233,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F416EEE32594AF86009A135B /* DetaliBaranjeMajstorViewController.swift in Sources */,
+				F416EEE72594B15F009A135B /* DetaliBaranjeKorisnikViewController.swift in Sources */,
+				F416EEE12594ADAB009A135B /* BaranjaMajstorTableViewController.swift in Sources */,
 				F4118DCF258527A400FCA766 /* ViewController.swift in Sources */,
+				F416EEED25974E66009A135B /* PortfolioTableViewCell.swift in Sources */,
+				F416EEEB2594B39E009A135B /* DetaliRabotaViewController.swift in Sources */,
 				F4118DCD258527A400FCA766 /* AppDelegate.swift in Sources */,
-				F416EEDD2591090A009A135B /* PortfolioTableViewController.swift in Sources */,
-				F416EEDB2590FC6E009A135B /* MajstorTableViewController.swift in Sources */,
+				F416EEE52594B0F2009A135B /* BaranjaKorisnikTableViewController.swift in Sources */,
+				F416EEDF2594ACBD009A135B /* PortfolioMajstorTableViewController.swift in Sources */,
+				F416EEE92594B232009A135B /* Zakazani_ZavrseniRabotiTableViewController.swift in Sources */,
 				F4118DDF258671CF00FCA766 /* DefektViewController.swift in Sources */,
 				F416EED9258E3554009A135B /* ListaOdMajstoriTableViewController.swift in Sources */,
 			);
