@@ -25,6 +25,9 @@ class DetaliBaranjeMajstorViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func konBaranja(_ sender: Any) {
+        navigationController?.dismiss(animated: true, completion: nil)
+    }
     @IBAction func ispratiPonudaPressed(_ sender: Any) {
         //baranje["status"] = "ponuda"
     }

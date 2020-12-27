@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Parse
 
-class DetaliRabotaViewController: UIViewController {
+class DetaliRabotaViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
     @IBOutlet weak var datumRabota: UILabel!
     
@@ -28,6 +29,21 @@ class DetaliRabotaViewController: UIViewController {
     @IBAction func konLokacijaPressed(_ sender: Any) {
     }
     @IBAction func izberiSlikaPressed(_ sender: Any) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            zavrsenaRabotaSlika.image = image
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func zavrsiRabotaPressed(_ sender: Any) {
     }
     /*
     // MARK: - Navigation

@@ -427,28 +427,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="majstorCell" textLabel="DbT-Bu-fPP" detailTextLabel="b0C-nN-wjw" style="IBUITableViewCellStyleSubtitle" id="WpG-pB-y81">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="majstorCell" id="WpG-pB-y81">
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WpG-pB-y81" id="GOJ-iV-wIR">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DbT-Bu-fPP">
-                                            <rect key="frame" x="16" y="5" width="33.5" height="20.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="b0C-nN-wjw">
-                                            <rect key="frame" x="16" y="25.5" width="44" height="14.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="bLH-be-tS2" kind="show" identifier="portfolioSegue" id="kUF-lw-pDq"/>
@@ -567,7 +551,11 @@
                         <viewLayoutGuide key="safeArea" id="fsV-00-3DI"/>
                     </view>
                     <navigationItem key="navigationItem" title="Detali" id="YHa-E5-ACR">
-                        <barButtonItem key="leftBarButtonItem" title="Baranja" id="qDo-Ou-6WS"/>
+                        <barButtonItem key="leftBarButtonItem" title="Baranja" id="qDo-Ou-6WS">
+                            <connections>
+                                <action selector="konBaranja:" destination="X2f-aa-IRM" id="IrG-DY-i7O"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="cenaPonuda" destination="Ni7-U0-2vT" id="9uY-aq-yyg"/>
@@ -637,17 +625,24 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DB0-ZY-AKB">
-                                <rect key="frame" x="10" y="269" width="300" height="149"/>
+                                <rect key="frame" x="10" y="257" width="300" height="149"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="149" id="3Ez-Dh-cZB"/>
                                     <constraint firstAttribute="width" constant="300" id="o1o-9C-pPc"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ela-UO-j0n">
-                                <rect key="frame" x="123" y="430" width="74" height="30"/>
+                                <rect key="frame" x="123" y="414" width="74" height="30"/>
                                 <state key="normal" title="Izberi Slika"/>
                                 <connections>
                                     <action selector="izberiSlikaPressed:" destination="TOe-Ys-YYu" eventType="touchUpInside" id="Nzy-iJ-VXx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BhI-Dn-DVj">
+                                <rect key="frame" x="112.5" y="443" width="95" height="30"/>
+                                <state key="normal" title="Zavrsi Rabota"/>
+                                <connections>
+                                    <action selector="zavrsiRabotaPressed:" destination="TOe-Ys-YYu" eventType="touchUpInside" id="nJ4-nw-uUw"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -659,15 +654,17 @@
                             <constraint firstItem="DB0-ZY-AKB" firstAttribute="leading" secondItem="a6Y-dc-H2a" secondAttribute="leading" constant="10" id="74Y-bk-teG"/>
                             <constraint firstItem="PDL-hr-num" firstAttribute="leading" secondItem="a6Y-dc-H2a" secondAttribute="leading" constant="10" id="Atb-Zh-cjT"/>
                             <constraint firstItem="ZMI-Nb-vuO" firstAttribute="leading" secondItem="a6Y-dc-H2a" secondAttribute="leading" constant="10" id="ElY-Bc-lR6"/>
-                            <constraint firstItem="Ela-UO-j0n" firstAttribute="top" secondItem="DB0-ZY-AKB" secondAttribute="bottom" constant="12" id="Gym-Bg-SxJ"/>
+                            <constraint firstItem="Ela-UO-j0n" firstAttribute="top" secondItem="DB0-ZY-AKB" secondAttribute="bottom" constant="8" id="Gym-Bg-SxJ"/>
                             <constraint firstItem="JYA-CR-F0U" firstAttribute="top" secondItem="PDL-hr-num" secondAttribute="bottom" constant="8" id="I3F-BG-WTt"/>
                             <constraint firstItem="a6Y-dc-H2a" firstAttribute="trailing" secondItem="x1r-rm-9w6" secondAttribute="trailing" constant="10" id="K7e-R4-al0"/>
                             <constraint firstItem="ZMI-Nb-vuO" firstAttribute="top" secondItem="a6Y-dc-H2a" secondAttribute="top" constant="10" id="LLh-8a-x3E"/>
                             <constraint firstItem="x1r-rm-9w6" firstAttribute="top" secondItem="GxY-Hb-CIC" secondAttribute="bottom" constant="21" id="SyM-rn-9ki"/>
                             <constraint firstItem="PsZ-ac-IVK" firstAttribute="top" secondItem="RVr-0b-grN" secondAttribute="bottom" constant="2" id="U7o-5N-gN0"/>
+                            <constraint firstItem="BhI-Dn-DVj" firstAttribute="centerX" secondItem="IOb-2e-QsY" secondAttribute="centerX" id="YGG-wu-JXn"/>
                             <constraint firstItem="Ela-UO-j0n" firstAttribute="centerX" secondItem="IOb-2e-QsY" secondAttribute="centerX" id="dBk-jO-SMd"/>
                             <constraint firstItem="PsZ-ac-IVK" firstAttribute="leading" secondItem="GxY-Hb-CIC" secondAttribute="trailing" constant="93.5" id="dwL-FD-XiF"/>
-                            <constraint firstItem="DB0-ZY-AKB" firstAttribute="top" secondItem="x1r-rm-9w6" secondAttribute="bottom" constant="22" id="fMj-Uz-lJV"/>
+                            <constraint firstItem="BhI-Dn-DVj" firstAttribute="top" secondItem="Ela-UO-j0n" secondAttribute="bottom" constant="-1" id="eSz-WB-X8T"/>
+                            <constraint firstItem="DB0-ZY-AKB" firstAttribute="top" secondItem="x1r-rm-9w6" secondAttribute="bottom" constant="10" id="fMj-Uz-lJV"/>
                             <constraint firstItem="GxY-Hb-CIC" firstAttribute="leading" secondItem="a6Y-dc-H2a" secondAttribute="leading" constant="10" id="gMR-mT-ZbG"/>
                             <constraint firstItem="GxY-Hb-CIC" firstAttribute="top" secondItem="RVr-0b-grN" secondAttribute="bottom" constant="8" id="m7F-Cs-rEB"/>
                             <constraint firstItem="a6Y-dc-H2a" firstAttribute="trailing" secondItem="DB0-ZY-AKB" secondAttribute="trailing" constant="10" id="oN1-ko-kOc"/>
@@ -789,8 +786,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="7Aw-TP-aF5">
-                        <barButtonItem key="leftBarButtonItem" title="Nazad kon majstori" id="VEX-ZN-uHg"/>
-                        <barButtonItem key="rightBarButtonItem" title="Pobaraj" id="3fE-SL-plA"/>
+                        <barButtonItem key="leftBarButtonItem" title="Nazad kon majstori" id="VEX-ZN-uHg">
+                            <connections>
+                                <action selector="konMajstori:" destination="aYE-Nf-AHW" id="YVJ-mh-ygf"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Pobaraj" id="3fE-SL-plA">
+                            <connections>
+                                <action selector="pobarajMajstor:" destination="aYE-Nf-AHW" id="RD5-Vk-Uep"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uSv-D8-ESU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -844,11 +849,12 @@
                     <navigationItem key="navigationItem" title="Baranja" id="KSL-TF-7N7">
                         <barButtonItem key="leftBarButtonItem" title="Odjava" id="yjy-fu-Wdm">
                             <connections>
-                                <action selector="Odjava:" destination="Q4C-VW-VJd" id="jdY-Pu-bV5"/>
+                                <action selector="odjava:" destination="Q4C-VW-VJd" id="zi5-ar-ZZc"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Raboti" id="L1H-zS-5bD">
                             <connections>
+                                <action selector="raboti:" destination="Q4C-VW-VJd" id="WpO-Ly-BPx"/>
                                 <segue destination="Rj5-HT-zgP" kind="show" identifier="rabotiSegue" id="FRn-jQ-XDr"/>
                             </connections>
                         </barButtonItem>
@@ -863,7 +869,7 @@
             <objects>
                 <navigationController id="rpX-9X-l3C" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="NDZ-2s-4VA">
-                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>

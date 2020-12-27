@@ -10,6 +10,7 @@ import UIKit
 import Parse
 
 class ListaOdMajstoriTableViewController: UITableViewController {
+    var tipMajstor: String = ""
     
     var majstoriEmail = [String]()
     var majstoriName = [String]()
@@ -18,6 +19,7 @@ class ListaOdMajstoriTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateTable()
+        print(tipMajstor)
 
     }
 
@@ -48,7 +50,7 @@ class ListaOdMajstoriTableViewController: UITableViewController {
         self.objectIds.removeAll()
         
         let query = PFUser.query()
-        query?.whereKey("type", equalTo: "Elektricar")
+        query?.whereKey("type", equalTo: tipMajstor)
 //        query?.whereKey("username" ,notEqualTo: PFUser.current()?.username ?? "")
         query?.findObjectsInBackground(block: { (users, error) in
             if error != nil {
@@ -56,19 +58,13 @@ class ListaOdMajstoriTableViewController: UITableViewController {
             }else if let users = users{
                 for object in users {
                     if let user = object as? PFUser{
-                        if let email = user.email {
-                            print(email)
-//                            if let name = user["name"] as? String{
+                        if let username = user.username {
                                 if let objectId = user.objectId{
-//                                    print(name)
-                                    self.majstoriEmail.append(email)
-//                                    self.majstoriName.append(name)
+                                    print(self.tipMajstor)
+                                    self.majstoriEmail.append(username)
                                     self.objectIds.append(objectId)
-                                    
                                     self.tableView.reloadData()
                                 }
-//                            }
-                            
                         }
                     }
                 }

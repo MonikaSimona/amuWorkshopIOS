@@ -35,11 +35,18 @@ class DefektViewController: UIViewController, MKMapViewDelegate{
    
   
     @IBAction func tipNaMajstorPressed(_ sender: UIButton) {
-        tipNaMajstorString =  (sender.titleLabel?.text)! + "i"
-        tipNaMjastorKopce.titleLabel!.text = tipNaMajstorString
+        tipNaMajstorString =  (sender.titleLabel?.text)!
+        tipNaMjastorKopce.titleLabel!.text = tipNaMajstorString + "i"
     }
     @IBAction func konListaOdMajstori(_ sender: UIButton) {
+        
 //        print(sender.titleLabel?.text)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "listaOdMajstori" {
+            let destSegue  = segue.destination as? ListaOdMajstoriTableViewController
+            destSegue?.tipMajstor = tipNaMajstorString
+        }
     }
     
     @IBAction func odjava(_ sender: Any) {
