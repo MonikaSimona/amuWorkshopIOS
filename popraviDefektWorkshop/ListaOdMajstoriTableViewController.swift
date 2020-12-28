@@ -13,13 +13,15 @@ class ListaOdMajstoriTableViewController: UITableViewController {
     var tipMajstor: String = ""
     
     var majstoriEmail = [String]()
+    var majstoriPhone = [String]()
     var majstoriName = [String]()
+    
     var objectIds = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         updateTable()
-        print(tipMajstor)
+//        print(tipMajstor)
 
     }
 
@@ -40,12 +42,28 @@ class ListaOdMajstoriTableViewController: UITableViewController {
 
         
 //        cell.textLabel?.text = majstoriName[indexPath.row]
-        cell.textLabel?.text = majstoriEmail[indexPath.row]
+        cell.textLabel?.text = majstoriName[indexPath.row]
+        cell.detailTextLabel?.text = "lokacija"
 
         return cell
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "portfolioSegue" {
+            if let index  = tableView.indexPathForSelectedRow?.row{
+                let portfolio = segue.destination as! PortfolioMajstorTableViewController
+                portfolio.objectId = objectIds[index]
+                
+            }
+        }
+    }
+    
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        performSegue(withIdentifier: "portfolioSegue", sender: Any?.self)
+//    }
     func updateTable () {
         self.majstoriEmail.removeAll()
+        self.majstoriPhone.removeAll()
         self.majstoriName.removeAll()
         self.objectIds.removeAll()
         
@@ -60,8 +78,14 @@ class ListaOdMajstoriTableViewController: UITableViewController {
                     if let user = object as? PFUser{
                         if let username = user.username {
                                 if let objectId = user.objectId{
-                                    print(self.tipMajstor)
+//                                    print(self.tipMajstor)
+                                    print(user["name"] as! String)
+                                    print(user["phone"] as! String)
+                                    print(user["type"] as! String)
+                                    print(objectId)
                                     self.majstoriEmail.append(username)
+                                    self.majstoriName.append(user["name"] as! String)
+                                    self.majstoriPhone.append(user["phone"] as! String)
                                     self.objectIds.append(objectId)
                                     self.tableView.reloadData()
                                 }

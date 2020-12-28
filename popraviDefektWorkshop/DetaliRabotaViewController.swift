@@ -9,6 +9,19 @@
 import UIKit
 import Parse
 
+extension UIImage{
+    enum JPEGQuality: CGFloat{
+        case lowest  = 0
+        case low = 0.25
+        case medium = 0.5
+        case high = 0.75
+        case highest = 1
+    }
+    func jpeg(_ jpegQuality:JPEGQuality)->Data?{
+        return jpegData(compressionQuality: jpegQuality.rawValue)
+    }
+}
+
 class DetaliRabotaViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
     @IBOutlet weak var datumRabota: UILabel!
@@ -19,6 +32,8 @@ class DetaliRabotaViewController: UIViewController,UIImagePickerControllerDelega
     @IBOutlet weak var statusRabota: UILabel!
     @IBOutlet weak var imePrezimeKorisnik: UILabel!
     @IBOutlet weak var emailKorisnik: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -44,6 +59,24 @@ class DetaliRabotaViewController: UIViewController,UIImagePickerControllerDelega
     }
     
     @IBAction func zavrsiRabotaPressed(_ sender: Any) {
+        if let image = zavrsenaRabotaSlika.image{
+            let rabota = PFObject(className: "Rabota")
+            rabota["datum"] = datumZavrsuvanjeField.text
+            rabota["majstorId"] = PFUser.current()?.objectId
+            if let imagedata = image.jpeg(.medium){
+                let imageFile = PFFileObject(name: "image.jpg", data: imagedata)
+                rabota["imageFile"] = imageFile
+                
+                rabota.saveInBackground { (success, error) in
+                    if success {
+                        self.datumZavrsuvanjeField.text = ""
+                        self.zavrsenaRabotaSlika.image = nil
+                    }else{
+                        print("\(error ?? "" as! Error)")
+                    }
+                }
+            }
+        }
     }
     /*
     // MARK: - Navigation

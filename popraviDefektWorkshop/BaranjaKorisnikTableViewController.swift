@@ -34,7 +34,7 @@ class BaranjaKorisnikTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "baranjeKorisnikCell", for: indexPath)
 
         cell.textLabel?.text = "cell \(indexPath.row)"
 

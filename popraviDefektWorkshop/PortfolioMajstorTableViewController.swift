@@ -7,11 +7,26 @@
 //
 
 import UIKit
-
+import Parse
 class PortfolioMajstorTableViewController: UITableViewController {
-
+    var objectId: String = ""
+    var images = [PFFileObject]()
+    var dates = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(objectId)
+        let query = PFQuery(className: "Rabota")
+        query.whereKey("objectId", equalTo: objectId)
+        query.findObjectsInBackground { (objects, error) in
+            if let raboti = objects{
+                for rabota in raboti{
+                    self.images.append(rabota["imageFile"] as! PFFileObject)
+                    self.dates.append(rabota["datum"] as! String)
+                    self.tableView.reloadData()
+                }
+            }
+        }
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -23,6 +38,7 @@ class PortfolioMajstorTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     @IBAction func pobarajMajstor(_ sender: Any) {
+        
     }
     @IBAction func konMajstori(_ sender: Any) {
         navigationController?.dismiss(animated: true, completion: nil)
@@ -34,14 +50,21 @@ class PortfolioMajstorTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 4
+        return dates.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PortfolioCell", for: indexPath) as! PortfolioTableViewCell
+        images[indexPath.row].getDataInBackground { (data, error) in
+            if let imagedata = data {
+                if let img  = UIImage(data: imagedata){
+                    cell.solvedImage.image = img
+                }
+            }
+        }
 
-        cell.textLabel?.text = "cell \(indexPath.row)"
+        cell.solvedDatum.text = dates[indexPath.row]
 
         return cell
     }
