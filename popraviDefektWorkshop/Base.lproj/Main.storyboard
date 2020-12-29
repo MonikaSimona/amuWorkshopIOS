@@ -288,7 +288,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZs-hq-jbi">
-                                <rect key="frame" x="10" y="324" width="58" height="28"/>
+                                <rect key="frame" x="20" y="324" width="58" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Elektricar"/>
                                 <connections>
@@ -296,7 +296,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1xS-3h-BEL">
-                                <rect key="frame" x="78" y="324" width="36" height="28"/>
+                                <rect key="frame" x="88" y="324" width="36" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Stolar"/>
                                 <connections>
@@ -304,7 +304,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ar9-kg-wfZ">
-                                <rect key="frame" x="124" y="324" width="39" height="28"/>
+                                <rect key="frame" x="134" y="324" width="39" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Bravar"/>
                                 <connections>
@@ -312,7 +312,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evB-dG-KPF">
-                                <rect key="frame" x="173" y="324" width="64" height="28"/>
+                                <rect key="frame" x="183" y="324" width="64" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Mehanicar"/>
                                 <connections>
@@ -320,21 +320,24 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJq-YK-5gm">
-                                <rect key="frame" x="247" y="324" width="35" height="28"/>
+                                <rect key="frame" x="257" y="324" width="35" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Moler"/>
                                 <connections>
                                     <action selector="tipNaMajstorPressed:" destination="plo-TJ-M5o" eventType="touchUpInside" id="fSg-8E-y7R"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lista od :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qoU-XL-CLF">
-                                <rect key="frame" x="10" y="360" width="63" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pogledni gi site :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qoU-XL-CLF">
+                                <rect key="frame" x="10" y="360" width="106.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0WQ-rC-nrM">
-                                <rect key="frame" x="77" y="354" width="55" height="30"/>
+                                <rect key="frame" x="120.5" y="354" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="M0O-tA-mOt"/>
+                                </constraints>
                                 <state key="normal" title="Majstori"/>
                                 <connections>
                                     <action selector="konListaOdMajstori:" destination="plo-TJ-M5o" eventType="touchUpInside" id="eXJ-rp-SNv"/>
@@ -342,8 +345,8 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Defekt na lokacija" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dE6-Sf-5P4">
-                                <rect key="frame" x="10" y="408" width="135" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="10" y="407" width="114.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -358,7 +361,7 @@
                             <constraint firstItem="XZs-hq-jbi" firstAttribute="top" secondItem="yJk-yl-szd" secondAttribute="bottom" constant="8" id="8fh-cO-yTc"/>
                             <constraint firstItem="dE6-Sf-5P4" firstAttribute="top" secondItem="qoU-XL-CLF" secondAttribute="bottom" constant="30" id="9in-sr-rgF"/>
                             <constraint firstItem="0WQ-rC-nrM" firstAttribute="top" secondItem="1xS-3h-BEL" secondAttribute="bottom" constant="2" id="CWb-1Z-CuQ"/>
-                            <constraint firstItem="XZs-hq-jbi" firstAttribute="leading" secondItem="TkY-TC-UYK" secondAttribute="leading" constant="10" id="IB4-IQ-Azn"/>
+                            <constraint firstItem="XZs-hq-jbi" firstAttribute="leading" secondItem="TkY-TC-UYK" secondAttribute="leading" constant="20" id="IB4-IQ-Azn"/>
                             <constraint firstItem="qoU-XL-CLF" firstAttribute="leading" secondItem="TkY-TC-UYK" secondAttribute="leading" constant="10" id="JPq-nh-eO4"/>
                             <constraint firstItem="pWU-IA-qg3" firstAttribute="leading" secondItem="TkY-TC-UYK" secondAttribute="leading" id="PNY-fK-tYo"/>
                             <constraint firstItem="evB-dG-KPF" firstAttribute="leading" secondItem="Ar9-kg-wfZ" secondAttribute="trailing" constant="10" id="PSa-15-XYP"/>
@@ -435,7 +438,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="aYE-Nf-AHW" kind="show" identifier="portfolioSegue" id="xYE-Fc-1NT"/>
+                                    <segue destination="aYE-Nf-AHW" kind="show" identifier="portfolioSegue" id="poM-fC-3BF"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -550,13 +553,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fsV-00-3DI"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Detali" id="YHa-E5-ACR">
-                        <barButtonItem key="leftBarButtonItem" title="Baranja" id="qDo-Ou-6WS">
-                            <connections>
-                                <action selector="konBaranja:" destination="X2f-aa-IRM" id="IrG-DY-i7O"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Detali" id="YHa-E5-ACR"/>
                     <connections>
                         <outlet property="cenaPonuda" destination="Ni7-U0-2vT" id="9uY-aq-yyg"/>
                         <outlet property="datumBaranje" destination="GKV-AP-6oo" id="N8I-wM-5Ud"/>
@@ -626,6 +623,7 @@
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DB0-ZY-AKB">
                                 <rect key="frame" x="10" y="257" width="300" height="149"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="149" id="3Ez-Dh-cZB"/>
                                     <constraint firstAttribute="width" constant="300" id="o1o-9C-pPc"/>
@@ -698,7 +696,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="detaliRabotaSegue" id="scW-wH-oB7">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="rabotaCell" id="scW-wH-oB7">
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="scW-wH-oB7" id="upE-l5-ebA">
@@ -706,7 +704,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="TOe-Ys-YYu" kind="show" id="mgr-IW-4Zm"/>
+                                    <segue destination="TOe-Ys-YYu" kind="show" identifier="detaliRabotaSegue" id="mgr-IW-4Zm"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -733,7 +731,7 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PortfolioCell" rowHeight="246" id="5X8-ts-qtG" customClass="PortfolioTableViewCell" customModule="popraviDefektWorkshop" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="246"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5X8-ts-qtG" id="NwE-TB-miJ">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5X8-ts-qtG" id="NwE-TB-miJ" customClass="PortfolioTableViewCell" customModule="popraviDefektWorkshop" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="245.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -743,7 +741,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VxT-fc-k29">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VxT-fc-k29">
                                             <rect key="frame" x="2" y="0.0" width="316" height="182"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="VxT-fc-k29" secondAttribute="height" multiplier="158:91" id="HSX-oO-JXs"/>
@@ -751,11 +749,13 @@
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="V31-0x-qZr" firstAttribute="top" secondItem="VxT-fc-k29" secondAttribute="bottom" constant="19" id="Lel-Jw-rxO"/>
-                                        <constraint firstItem="V31-0x-qZr" firstAttribute="centerX" secondItem="NwE-TB-miJ" secondAttribute="centerX" id="Psq-E9-rFF"/>
-                                        <constraint firstItem="VxT-fc-k29" firstAttribute="leading" secondItem="NwE-TB-miJ" secondAttribute="leading" constant="2" id="XbX-RZ-yz0"/>
-                                        <constraint firstItem="VxT-fc-k29" firstAttribute="top" secondItem="NwE-TB-miJ" secondAttribute="top" constant="2" id="eFz-sm-GaK"/>
-                                        <constraint firstAttribute="trailing" secondItem="VxT-fc-k29" secondAttribute="trailing" constant="2" id="pnC-1c-Ms4"/>
+                                        <constraint firstItem="V31-0x-qZr" firstAttribute="top" secondItem="VxT-fc-k29" secondAttribute="bottom" constant="21" id="7TV-A5-bet"/>
+                                        <constraint firstItem="VxT-fc-k29" firstAttribute="top" secondItem="NwE-TB-miJ" secondAttribute="top" id="NzW-a1-EZy"/>
+                                        <constraint firstItem="VxT-fc-k29" firstAttribute="leading" secondItem="NwE-TB-miJ" secondAttribute="leading" constant="2" id="XyD-8Q-eWf"/>
+                                        <constraint firstAttribute="trailing" secondItem="VxT-fc-k29" secondAttribute="trailing" constant="2" id="bIm-EE-ojd"/>
+                                        <constraint firstItem="V31-0x-qZr" firstAttribute="leading" secondItem="NwE-TB-miJ" secondAttribute="leadingMargin" constant="55.5" id="kPD-qN-biu"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="V31-0x-qZr" secondAttribute="trailing" constant="55.5" id="vAJ-ZU-uOE"/>
+                                        <constraint firstAttribute="bottom" secondItem="V31-0x-qZr" secondAttribute="bottom" constant="21.5" id="whV-Xv-6NJ"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -770,11 +770,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="7Aw-TP-aF5">
-                        <barButtonItem key="leftBarButtonItem" title="Nazad kon majstori" id="VEX-ZN-uHg">
-                            <connections>
-                                <action selector="konMajstori:" destination="aYE-Nf-AHW" id="YVJ-mh-ygf"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Pobaraj" id="3fE-SL-plA">
                             <connections>
                                 <action selector="pobarajMajstor:" destination="aYE-Nf-AHW" id="RD5-Vk-Uep"/>
@@ -985,13 +980,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Jka-Gn-Pwa"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Detali" id="6ZL-fd-xvl">
-                        <barButtonItem key="leftBarButtonItem" title="Baranja" style="plain" id="iPY-zJ-q1t">
-                            <connections>
-                                <action selector="konBaranja:" destination="3G0-V1-ViY" id="jYc-p9-uWZ"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Detali" id="6ZL-fd-xvl"/>
                     <connections>
                         <outlet property="cenaDatumPonuda" destination="RNi-eQ-RG6" id="lLY-7T-R4t"/>
                         <outlet property="datumBaranje" destination="2Aw-sC-bAm" id="WCM-Pg-gSs"/>

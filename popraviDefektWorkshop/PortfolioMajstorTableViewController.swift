@@ -12,11 +12,14 @@ class PortfolioMajstorTableViewController: UITableViewController {
     var objectId: String = ""
     var images = [PFFileObject]()
     var dates = [String]()
+    var opisDefekt: String = ""
+    var lokacijaKorisnik: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print(objectId)
         let query = PFQuery(className: "Rabota")
-        query.whereKey("objectId", equalTo: objectId)
+        query.whereKey("majstorId", equalTo: objectId)
         query.findObjectsInBackground { (objects, error) in
             if let raboti = objects{
                 for rabota in raboti{
@@ -38,11 +41,27 @@ class PortfolioMajstorTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     @IBAction func pobarajMajstor(_ sender: Any) {
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let dateString = dateFormatter.string(from: date)
+        let baranje = PFObject(className: "Baranje")
+        baranje["korisnikId"] = PFUser.current()?.objectId
+        baranje["majstorId"] = objectId
+        baranje["opisDefekt"] = opisDefekt
+        baranje["datum"] = dateString
+        baranje["status"] = "aktivno"
+        baranje.saveInBackground { (success, error) in
+            if let err = error{
+                print(err.localizedDescription)
+            }else{
+                print(success.description)
+                print("Napraveno Baranje")
+            }
+        }
         
     }
-    @IBAction func konMajstori(_ sender: Any) {
-        navigationController?.dismiss(animated: true, completion: nil)
-    }
+   
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1

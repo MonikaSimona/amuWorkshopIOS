@@ -11,6 +11,8 @@ import Parse
 
 class ListaOdMajstoriTableViewController: UITableViewController {
     var tipMajstor: String = ""
+    var opisDefekt: String = ""
+    var lokacijaKorisnik: String = ""
     
     var majstoriEmail = [String]()
     var majstoriPhone = [String]()
@@ -40,8 +42,33 @@ class ListaOdMajstoriTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "majstorCell", for: indexPath)
 
-        
-//        cell.textLabel?.text = majstoriName[indexPath.row]
+        let query = PFQuery(className: "Baranje")
+        query.whereKey("majstorId", equalTo: objectIds[indexPath.row])
+        query.getFirstObjectInBackground { (object, error) in
+            
+//        query.getObjectInBackground(withId: objectIds[indexPath.row], block: { (object, error) in
+            if let err = error{
+                print(err.localizedDescription)
+            }else{
+                if let baranje = object {
+                     let status = baranje["status"] as! String
+                    if status == "aktivno"{
+                        cell.textLabel?.textColor = UIColor.yellow
+                        cell.detailTextLabel?.textColor = UIColor.yellow
+                    }else if status == "ponuda"{
+                        cell.textLabel?.textColor = UIColor.red
+                        cell.detailTextLabel?.textColor = UIColor.red
+                    }else if status == "zakazano"{
+                        cell.textLabel?.textColor = UIColor.blue
+                        cell.detailTextLabel?.textColor = UIColor.blue
+                    }else if status == "zavrseno"{
+                        cell.textLabel?.textColor = UIColor.green
+                        cell.detailTextLabel?.textColor = UIColor.green
+                    }
+                }
+                
+            }
+        }
         cell.textLabel?.text = majstoriName[indexPath.row]
         cell.detailTextLabel?.text = "lokacija"
 
@@ -53,14 +80,14 @@ class ListaOdMajstoriTableViewController: UITableViewController {
             if let index  = tableView.indexPathForSelectedRow?.row{
                 let portfolio = segue.destination as! PortfolioMajstorTableViewController
                 portfolio.objectId = objectIds[index]
+                portfolio.opisDefekt = opisDefekt
+                portfolio.lokacijaKorisnik = lokacijaKorisnik
                 
             }
         }
     }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        performSegue(withIdentifier: "portfolioSegue", sender: Any?.self)
-//    }
+
     func updateTable () {
         self.majstoriEmail.removeAll()
         self.majstoriPhone.removeAll()
@@ -69,7 +96,6 @@ class ListaOdMajstoriTableViewController: UITableViewController {
         
         let query = PFUser.query()
         query?.whereKey("type", equalTo: tipMajstor)
-//        query?.whereKey("username" ,notEqualTo: PFUser.current()?.username ?? "")
         query?.findObjectsInBackground(block: { (users, error) in
             if error != nil {
                 print(error?.localizedDescription ?? "")
@@ -78,11 +104,10 @@ class ListaOdMajstoriTableViewController: UITableViewController {
                     if let user = object as? PFUser{
                         if let username = user.username {
                                 if let objectId = user.objectId{
-//                                    print(self.tipMajstor)
-                                    print(user["name"] as! String)
-                                    print(user["phone"] as! String)
-                                    print(user["type"] as! String)
-                                    print(objectId)
+//                                    print(user["name"] as! String)
+//                                    print(user["phone"] as! String)
+//                                    print(user["type"] as! String)
+//                                    print(objectId)
                                     self.majstoriEmail.append(username)
                                     self.majstoriName.append(user["name"] as! String)
                                     self.majstoriPhone.append(user["phone"] as! String)

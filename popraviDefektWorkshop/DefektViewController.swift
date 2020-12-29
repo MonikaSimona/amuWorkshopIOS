@@ -17,27 +17,21 @@ class DefektViewController: UIViewController, MKMapViewDelegate{
     @IBOutlet weak var opisZaDefekt: UITextField!
     @IBOutlet weak var tipNaMjastorKopce: UIButton!
     var tipNaMajstorString = ""
+    var location = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(DefektViewController.longpress(gestureReg:)))
         longPress.minimumPressDuration = 1
         map.addGestureRecognizer(longPress)
-        
-       
-        
-        
-        // Do any additional setup after loading the view.
     }
     
     
-    
-   
-  
     @IBAction func tipNaMajstorPressed(_ sender: UIButton) {
         tipNaMajstorString =  (sender.titleLabel?.text)!
         tipNaMjastorKopce.titleLabel!.text = tipNaMajstorString + "i"
     }
+    
     @IBAction func konListaOdMajstori(_ sender: UIButton) {
         
 //        print(sender.titleLabel?.text)
@@ -46,6 +40,9 @@ class DefektViewController: UIViewController, MKMapViewDelegate{
         if segue.identifier == "listaOdMajstori" {
             let destSegue  = segue.destination as? ListaOdMajstoriTableViewController
             destSegue?.tipMajstor = tipNaMajstorString
+            destSegue?.opisDefekt = opisZaDefekt.text!
+            destSegue?.lokacijaKorisnik = location
+            
         }
     }
     
@@ -85,7 +82,7 @@ class DefektViewController: UIViewController, MKMapViewDelegate{
                     annotation.coordinate = newCoordinate
                     annotation.title = self.title
                     self.map.addAnnotation(annotation)
-                    self.defektLocLabel.text = title
+                    self.defektLocLabel.text = "Defekt na lokacija: " + title
                 }
             })
             

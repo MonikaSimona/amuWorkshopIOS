@@ -11,8 +11,8 @@ import UIKit
 class PortfolioTableViewCell: UITableViewCell {
 
     @IBOutlet weak var solvedImage: UIImageView!
-    
     @IBOutlet weak var solvedDatum: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

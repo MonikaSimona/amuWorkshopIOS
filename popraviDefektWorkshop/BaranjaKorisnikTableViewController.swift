@@ -7,20 +7,22 @@
 //
 
 import UIKit
+import Parse
 
 class BaranjaKorisnikTableViewController: UITableViewController {
+    var baranjaMajstorIds = [String]()
+    var baranjaDatum = [String]()
+    var baranjaStatus = [String]()
+    var objectIds = [String]()
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateTable()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
     }
 
-    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -29,16 +31,73 @@ class BaranjaKorisnikTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 4
+        return baranjaMajstorIds.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "baranjeKorisnikCell", for: indexPath)
-
-        cell.textLabel?.text = "cell \(indexPath.row)"
-
+//        var majstorName = ""
+        let query = PFUser.query()
+        query?.getObjectInBackground(withId: baranjaMajstorIds[indexPath.row], block: { (object, error) in
+            if let err = error{
+                print(err.localizedDescription)
+            }else{
+                if let majstor = object {
+//                    print("od cellForRowAt \(majstor["name"] as! String)")
+//                    majstorName = majstor["name"] as! String
+                    cell.textLabel?.text = majstor["name"] as? String
+                }
+                
+            }
+        })
+//        print("majstor Name \(majstorName)")
+//        cell.textLabel?.text = majstorName
+        cell.detailTextLabel?.text = baranjaDatum[indexPath.row]
+        let status = baranjaStatus[indexPath.row]
+        if status == "aktivno"{
+            cell.textLabel?.textColor = UIColor.yellow
+            cell.detailTextLabel?.textColor = UIColor.yellow
+        }else if status == "ponuda"{
+            cell.textLabel?.textColor = UIColor.red
+            cell.detailTextLabel?.textColor = UIColor.red
+        }else if status == "zakazano"{
+            cell.textLabel?.textColor = UIColor.blue
+            cell.detailTextLabel?.textColor = UIColor.blue
+        }else if status == "zavrseno"{
+            cell.textLabel?.textColor = UIColor.green
+            cell.detailTextLabel?.textColor = UIColor.green
+        }
+//        print(majstorName)
         return cell
+    }
+    
+    func updateTable(){
+        self.baranjaMajstorIds.removeAll()
+        self.baranjaDatum.removeAll()
+        self.baranjaStatus.removeAll()
+        self.objectIds.removeAll()
+        let query = PFQuery(className: "Baranje")
+        query.whereKey("korisnikId", equalTo: PFUser.current()?.objectId ?? "")
+        query.findObjectsInBackground { (objects, error) in
+            if let err = error {
+                print(err.localizedDescription)
+            }else{
+                if let baranja = objects {
+                    for baranje in baranja{
+                        self.baranjaMajstorIds.append(baranje["majstorId"] as! String)
+                        self.baranjaDatum.append(baranje["datum"] as! String )
+                        self.baranjaStatus.append(baranje["status"] as! String)
+                        self.objectIds.append(baranje.objectId!)
+//                        print("Majstor \(baranje["majstorId"] as! String)")
+//                        print(baranje["status"] as! String)
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+        }
+        
+        
     }
     
 
