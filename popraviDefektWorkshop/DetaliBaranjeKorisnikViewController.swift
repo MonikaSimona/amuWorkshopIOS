@@ -7,9 +7,16 @@
 //
 
 import UIKit
+import Parse
 
 class DetaliBaranjeKorisnikViewController: UIViewController {
-
+    
+    var baranjeId: String = ""
+    var datum = ""
+    var opis = ""
+    var majstorId = "" //name,email,phone,tip
+    var status = ""
+    
     @IBOutlet weak var datumBaranje: UILabel!
     @IBOutlet weak var tipMajstor: UILabel!
     @IBOutlet weak var opisDefekt: UILabel!
@@ -26,23 +33,98 @@ class DetaliBaranjeKorisnikViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let query = PFQuery(className: "Baranja")
+        query.getObjectInBackground(withId: baranjeId, block: { (object, error) in
+            if let err = error{
+                print(err.localizedDescription)
+            }else{
+                if let baranje  = object{
+                    self.datum = baranje["datum"] as! String
+                    self.opis = baranje["opis"] as! String
+                    self.majstorId = baranje["majstorId"] as! String
+                    self.status = baranje["status"] as! String
+                }
+            }
+        })
+        
+        datumBaranje.text = datum
+        opisDefekt.text = opis
+        let queryMajstor = PFUser.query()
+        queryMajstor?.getObjectInBackground(withId: majstorId, block: { (object, error) in
+            if let err = error {
+                print(err.localizedDescription)
+            }else{
+                if let majstor = object as? PFUser {
+                    self.tipMajstor.text = majstor["type"] as? String
+                    self.imePrezimeMajstor.text = majstor["name"] as? String
+                    self.emailMajstor.text = majstor.email
+                    self.telefonMajstor.text = majstor["phone"] as? String
+                }
+            }
+        })
+        
+        otkaziKopce.isHidden = true
+        cenaDatumPonuda.isHidden = true
+        prifatiKopce.isHidden = true
+        odbijKopce.isHidden = true
+        zakazana_ZavrsenaRabota.isHidden = true //datum
+        zavrsenaRabotaSlika.isHidden = true
+        if status == "aktivno" {
+            datumBaranje.text = datum
+            otkaziKopce.isHidden = false
+        }else if status == "ponuda"{
+            cenaDatumPonuda.isHidden = false
+            prifatiKopce.isHidden = false
+            odbijKopce.isHidden = false
+        }else if status == "zakazano" {
+            zakazana_ZavrsenaRabota.isHidden = false
+        }else if status == "zavrseno"{
+            zakazana_ZavrsenaRabota.isHidden = false
+            zavrsenaRabotaSlika.isHidden = false
+        }
     }
     
     @IBAction func otkaziPressed(_ sender: Any) {
-        //izbrisi baranje od baza
+        let query = PFQuery(className: "Baranje")
+        query.getObjectInBackground(withId: baranjeId) { (object, error) in
+            if let err = error {
+                print(err.localizedDescription)
+            }else{
+                if let baranje = object {
+                    baranje.deleteInBackground()
+                }
+            }
+        }
     }
     
     @IBAction func prifatiPressed(_ sender: Any) {
-        //vo bazata vo klasata Baranje da ima pole status
-        //baranje["status"] = "prifatenaPonuda"
+        let query = PFQuery(className: "Baranje")
+        query.getObjectInBackground(withId: baranjeId) { (object, error) in
+            if let err = error {
+                print(err.localizedDescription)
+            }else{
+                if let baranje = object {
+                    baranje["status"] = "zakazano"
+                }
+            }
+        }
+        let queryRabota = PFQuery(className: "Rabota")
+        queryRabota.whereKey("baranjeId", equalTo: baranjeId)
+        
+        query.getObjectInBackground(withId: baranjeId) { (object, error) in
+            if let err = error {
+                print(err.localizedDescription)
+            }else{
+                if let baranje = object {
+                    baranje["status"] = "zakazano"
+                }
+            }
+        }
     }
     @IBAction func odbijPressed(_ sender: Any) {
         //baranje["status"] = "odbienaPonuda"
     }
-    @IBAction func konBaranja(_ sender: Any) {
-        navigationController?.dismiss(animated: true, completion: nil)
-    }
+   
     /*
     // MARK: - Navigation
 

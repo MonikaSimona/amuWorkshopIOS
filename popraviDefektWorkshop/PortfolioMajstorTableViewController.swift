@@ -50,6 +50,7 @@ class PortfolioMajstorTableViewController: UITableViewController {
         baranje["majstorId"] = objectId
         baranje["opisDefekt"] = opisDefekt
         baranje["datum"] = dateString
+        baranje["korisnik"] = lokacijaKorisnik
         baranje["status"] = "aktivno"
         baranje.saveInBackground { (success, error) in
             if let err = error{

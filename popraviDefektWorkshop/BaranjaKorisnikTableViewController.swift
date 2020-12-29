@@ -41,6 +41,7 @@ class BaranjaKorisnikTableViewController: UITableViewController {
         let query = PFUser.query()
         query?.getObjectInBackground(withId: baranjaMajstorIds[indexPath.row], block: { (object, error) in
             if let err = error{
+                print("cell")
                 print(err.localizedDescription)
             }else{
                 if let majstor = object {
@@ -72,6 +73,16 @@ class BaranjaKorisnikTableViewController: UITableViewController {
         return cell
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detaliBaranjeKorisnikSegue" {
+            if let index  = tableView.indexPathForSelectedRow?.row{
+                let baranje = segue.destination as! DetaliBaranjeKorisnikViewController
+                baranje.baranjeId = objectIds[index]
+                
+            }
+        }
+    }
+    
     func updateTable(){
         self.baranjaMajstorIds.removeAll()
         self.baranjaDatum.removeAll()
@@ -81,6 +92,7 @@ class BaranjaKorisnikTableViewController: UITableViewController {
         query.whereKey("korisnikId", equalTo: PFUser.current()?.objectId ?? "")
         query.findObjectsInBackground { (objects, error) in
             if let err = error {
+                print("updateTable")
                 print(err.localizedDescription)
             }else{
                 if let baranja = objects {

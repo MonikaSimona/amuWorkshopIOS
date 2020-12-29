@@ -8,9 +8,13 @@
 
 import UIKit
 import MapKit
+import Parse
 
 class DetaliBaranjeMajstorViewController: UIViewController {
-
+    var baranjeId: String = ""
+    var korisnikId = ""
+    var datum = ""
+    var opis = ""
     @IBOutlet weak var datumBaranje: UILabel!
     @IBOutlet weak var opisDefekt: UILabel!
     @IBOutlet weak var imePrezimeKorisnik: UILabel!
@@ -21,15 +25,54 @@ class DetaliBaranjeMajstorViewController: UIViewController {
     @IBOutlet weak var datumPonuda: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let query = PFQuery(className: "Baranja")
+        query.getObjectInBackground(withId: baranjeId, block: { (object, error) in
+            if let err = error{
+                print(err.localizedDescription)
+            }else{
+                if let baranje  = object{
+                    self.datum = baranje["datum"] as! String
+                    self.opis = baranje["opis"] as! String
+                    self.korisnikId = baranje["korisnikId"] as! String
+                }
+            }
+        })
+        datumBaranje.text = datum
+        opisDefekt.text = opis
+        
+        let queryMajstor = PFUser.query()
+        queryMajstor?.getObjectInBackground(withId: korisnikId, block: { (object, error) in
+            if let err = error {
+                print(err.localizedDescription)
+            }else{
+                if let korisnik = object as? PFUser {
+                    self.imePrezimeKorisnik.text = korisnik["name"] as? String
+                    self.emailKorsnik.text = korisnik.email
+                    self.telefonKorisnik.text = korisnik["phone"] as? String
+                }
+            }
+        })
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func konBaranja(_ sender: Any) {
-        navigationController?.dismiss(animated: true, completion: nil)
-    }
+    
     @IBAction func ispratiPonudaPressed(_ sender: Any) {
-        //baranje["status"] = "ponuda"
+        let queryBaranje = PFQuery(className: "Baranje")
+        queryBaranje.getObjectInBackground(withId: baranjeId) { (object, error) in
+            if let err = error {
+                print(err.localizedDescription)
+            }else{
+                if let baranje  =  object {
+                 baranje["status"] = "ponuda"
+                }
+            }
+        }
+        let rabota = PFObject(className: "Rabota")
+        rabota["baranjeId"] = baranjeId
+        rabota["datumPonuda"] = datumPonuda.text
+        rabota["cena"] = cenaPonuda.text
+        rabota.saveInBackground()
     }
     @IBAction func odbijBaranjePressed(_ sender: Any) {
         //baranje["status"] == "odbienoBaranje"

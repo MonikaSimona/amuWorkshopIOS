@@ -9,18 +9,14 @@
 import UIKit
 import Parse
 class BaranjaMajstorTableViewController: UITableViewController {
-
+    var baranjaKorisnikIds = [String]()
+    var baranjaDatum = [String]()
+    var baranjaStatus = [String]()
+    var objectIds = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        updateTable()
     }
-
-    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -29,7 +25,7 @@ class BaranjaMajstorTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 4
+        return baranjaKorisnikIds.count
     }
     
     @IBAction func odjava(_ sender: Any) {
@@ -42,10 +38,64 @@ class BaranjaMajstorTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "baranjeCell", for: indexPath)
-
-        cell.textLabel?.text = "cell \(indexPath.row)"
-
+        if baranjaStatus[indexPath.row] == "aktivno"{
+            print("aktivno")
+            let query = PFUser.query()
+            query?.getObjectInBackground(withId: baranjaKorisnikIds[indexPath.row], block: { (object, error) in
+                if let err = error{
+                    print(err.localizedDescription)
+                }else{
+                    print("pred da zeme ime")
+                    if let korisnik = object {
+//                         print("od tabela \(korisnik["name"] as! String)")
+                        cell.textLabel?.text = korisnik["name"] as? String
+                       
+                    }
+                    
+                }
+            })
+            cell.detailTextLabel?.text = baranjaDatum[indexPath.row]
+        }else{
+            print("Greska")
+        }
+        
         return cell
+    }
+    func updateTable(){
+        self.baranjaKorisnikIds.removeAll()
+        self.baranjaDatum.removeAll()
+        self.baranjaStatus.removeAll()
+        self.objectIds.removeAll()
+        let query = PFQuery(className: "Baranje")
+        query.whereKey("majstorId", equalTo: PFUser.current()?.objectId ?? "")
+        query.findObjectsInBackground { (objects, error) in
+            if let err = error {
+                print(err.localizedDescription)
+            }else{
+                if let baranja = objects {
+                    for baranje in baranja{
+                        self.baranjaKorisnikIds.append(baranje["korisnikId"] as! String)
+                        self.baranjaDatum.append(baranje["datum"] as! String )
+                        self.baranjaStatus.append(baranje["status"] as! String)
+                        self.objectIds.append(baranje.objectId!)
+                        print(baranje["korisnikId"] as! String)
+                        print(baranje["status"] as! String)
+                        print(baranje["datum"] as! String)
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detaliBaranjeMajstorSegue" {
+            if let index  = tableView.indexPathForSelectedRow?.row{
+                let baranje = segue.destination as! DetaliBaranjeMajstorViewController
+                baranje.baranjeId = objectIds[index]
+                
+            }
+        }
     }
     
 

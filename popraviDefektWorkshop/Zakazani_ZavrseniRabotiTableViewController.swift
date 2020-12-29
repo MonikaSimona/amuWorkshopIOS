@@ -7,9 +7,14 @@
 //
 
 import UIKit
+import Parse
 
 class Zakazani_ZavrseniRabotiTableViewController: UITableViewController {
 
+    var rabotiKorisnikIds = [String]()
+    var rabotiDatum = [String]()
+    var rabotiStatus = [String]()
+    var objectIds = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,16 +34,76 @@ class Zakazani_ZavrseniRabotiTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 4
+        return rabotiKorisnikIds.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "rabotaCell", for: indexPath)
 
-        cell.textLabel!.text = "\(indexPath.row)"
+        let query = PFUser.query()
+        query?.getObjectInBackground(withId: rabotiKorisnikIds[indexPath.row], block: { (object, error) in
+            if let err = error{
+                print(err.localizedDescription)
+            }else{
+                print("pred da zeme ime")
+                if let korisnik = object {
+                    print("od tabela \(korisnik["name"] as! String)")
+                    cell.textLabel?.text = korisnik["name"] as? String
+                    
+                }
+                
+            }
+        })
+        cell.detailTextLabel?.text = rabotiDatum[indexPath.row]
+        let status  = rabotiStatus[indexPath.row]
+        if status == "zavrseno" {
+            cell.textLabel?.textColor = UIColor.green
+            cell.detailTextLabel?.textColor = UIColor.green
+        }else if status == "zakazano"{
+            cell.textLabel?.textColor = UIColor.red
+            cell.detailTextLabel?.textColor = UIColor.red
+        }
 
         return cell
+    }
+    
+    
+    func updateTable(){
+        self.rabotiKorisnikIds.removeAll()
+        self.rabotiDatum.removeAll()
+        self.rabotiStatus.removeAll()
+        self.objectIds.removeAll()
+        let query = PFQuery(className: "Rabota")
+        query.whereKey("majstorId", equalTo: PFUser.current()?.objectId ?? "")
+        query.findObjectsInBackground { (objects, error) in
+            if let err = error {
+                print(err.localizedDescription)
+            }else{
+                if let raboti = objects {
+                    for rabota in raboti{
+                        self.rabotiKorisnikIds.append(rabota["korisnikId"] as! String)
+                        self.rabotiDatum.append(rabota["datum"] as! String )
+                        self.rabotiStatus.append(rabota["status"] as! String)
+                        self.objectIds.append(rabota.objectId!)
+//                        print(baranje["korisnikId"] as! String)
+//                        print(baranje["status"] as! String)
+//                        print(baranje["datum"] as! String)
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detaliRabotaSegue" {
+            if let index  = tableView.indexPathForSelectedRow?.row{
+                let rabota = segue.destination as! DetaliRabotaViewController
+                rabota.rabotaId = objectIds[index]
+                
+            }
+        }
     }
  
 

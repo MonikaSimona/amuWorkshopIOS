@@ -24,6 +24,7 @@ extension UIImage{
 
 class DetaliRabotaViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
+    var rabotaId: String = ""
     @IBOutlet weak var datumRabota: UILabel!
     
     @IBOutlet weak var zavrsenaRabotaSlika: UIImageView!
@@ -59,21 +60,63 @@ class DetaliRabotaViewController: UIViewController,UIImagePickerControllerDelega
     }
     
     @IBAction func zavrsiRabotaPressed(_ sender: Any) {
+        var baranjeId = ""
         if let image = zavrsenaRabotaSlika.image{
-            let rabota = PFObject(className: "Rabota")
-            rabota["datum"] = datumZavrsuvanjeField.text
-            rabota["majstorId"] = PFUser.current()?.objectId
-            if let imagedata = image.jpeg(.medium){
-                let imageFile = PFFileObject(name: "image.jpg", data: imagedata)
-                rabota["imageFile"] = imageFile
-                
-                rabota.saveInBackground { (success, error) in
-                    if success {
-                        self.datumZavrsuvanjeField.text = ""
-                        self.zavrsenaRabotaSlika.image = nil
-                    }else{
-                        print("\(error ?? "" as! Error)")
+//            let rabota = PFObject(className: "Rabota")
+//            rabota["datum"] = datumZavrsuvanjeField.text
+//            rabota["majstorId"] = PFUser.current()?.objectId
+//            if let imagedata = image.jpeg(.medium){
+//                let imageFile = PFFileObject(name: "image.jpg", data: imagedata)
+//                rabota["imageFile"] = imageFile
+//
+//                rabota.saveInBackground { (success, error) in
+//                    if success {
+//                        self.datumZavrsuvanjeField.text = ""
+//                        self.zavrsenaRabotaSlika.image = nil
+//                    }else{
+//                        print("\(error ?? "" as! Error)")
+//                    }
+//                }
+//            }
+            let query = PFQuery(className: "Rabota")
+            query.getObjectInBackground(withId: rabotaId) { (object, error) in
+                if let err = error{
+                    print(err.localizedDescription)
+                }else{
+                    if let rabota  = object{
+                        rabota["datum"] = self.datumZavrsuvanjeField.text
+                        rabota["status"] = "zavrseno"
+                        rabota["majstorId"] = PFUser.current()?.objectId
+                        if let imagedata = image.jpeg(.medium){
+                            let imageFile = PFFileObject(name: "image.jpg", data: imagedata)
+                            rabota["imageFile"] = imageFile
+                            self.datumZavrsuvanjeField.text = ""
+                            self.zavrsenaRabotaSlika.image = nil
+                           
+                        }
                     }
+                }
+            }
+        }
+        
+        let queryRabota = PFQuery(className: "Rabota")
+        queryRabota.getObjectInBackground(withId: rabotaId) { (object, error) in
+            if let err = error {
+                print(err.localizedDescription)
+            }else{
+                if let rabota =  object {
+                    baranjeId = rabota["baranjeId"] as! String
+                }
+            }
+        }
+        
+        let queryBaranje = PFQuery(className: "Baranje")
+        queryBaranje.getObjectInBackground(withId: baranjeId) { (object, error) in
+            if let err = error {
+                print(err.localizedDescription)
+            }else{
+                if let baranje  =  object {
+                    baranje["status"] = "zavrseno"
                 }
             }
         }

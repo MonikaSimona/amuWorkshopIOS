@@ -45,8 +45,6 @@ class ListaOdMajstoriTableViewController: UITableViewController {
         let query = PFQuery(className: "Baranje")
         query.whereKey("majstorId", equalTo: objectIds[indexPath.row])
         query.getFirstObjectInBackground { (object, error) in
-            
-//        query.getObjectInBackground(withId: objectIds[indexPath.row], block: { (object, error) in
             if let err = error{
                 print(err.localizedDescription)
             }else{
