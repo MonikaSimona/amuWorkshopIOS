@@ -24,7 +24,7 @@ class PortfolioMajstorTableViewController: UITableViewController {
             if let raboti = objects{
                 for rabota in raboti{
                     self.images.append(rabota["imageFile"] as! PFFileObject)
-                    self.dates.append(rabota["datum"] as! String)
+                    self.dates.append(rabota["datumPonuda"] as! String)
                     self.tableView.reloadData()
                 }
             }

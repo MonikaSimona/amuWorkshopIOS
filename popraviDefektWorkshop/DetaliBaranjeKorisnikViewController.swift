@@ -16,7 +16,7 @@ class DetaliBaranjeKorisnikViewController: UIViewController {
     var opis: String = ""
     var majstorId: String = "" //name,email,phone,tip
     var status: String = ""
-//    var niza = [String]()
+
     
     @IBOutlet weak var datumBaranje: UILabel!
     @IBOutlet weak var tipMajstor: UILabel!
@@ -39,41 +39,41 @@ class DetaliBaranjeKorisnikViewController: UIViewController {
       
         print("majstor id \(majstorId)")
         
-        datumBaranje.text = datum
-        opisDefekt.text = opis
-        let queryMajstor = PFUser.query()
-        queryMajstor?.getObjectInBackground(withId: majstorId, block: { (object, error) in
-            if let err = error {
-                print(err.localizedDescription)
-            }else{
-                if let majstor = object as? PFUser {
-                    self.tipMajstor.text = majstor["type"] as? String
-                    self.imePrezimeMajstor.text = majstor["name"] as? String
-                    self.emailMajstor.text = majstor.email
-                    self.telefonMajstor.text = majstor["phone"] as? String
-                }
-            }
-        })
-        
-        otkaziKopce.isHidden = true
-        cenaDatumPonuda.isHidden = true
-        prifatiKopce.isHidden = true
-        odbijKopce.isHidden = true
-        zakazana_ZavrsenaRabota.isHidden = true //datum
-        zavrsenaRabotaSlika.isHidden = true
-        if status == "aktivno" {
-            datumBaranje.text = datum
-            otkaziKopce.isHidden = false
-        }else if status == "ponuda"{
-            cenaDatumPonuda.isHidden = false
-            prifatiKopce.isHidden = false
-            odbijKopce.isHidden = false
-        }else if status == "zakazano" {
-            zakazana_ZavrsenaRabota.isHidden = false
-        }else if status == "zavrseno"{
-            zakazana_ZavrsenaRabota.isHidden = false
-            zavrsenaRabotaSlika.isHidden = false
-        }
+//        datumBaranje.text = datum
+//        opisDefekt.text = opis
+//        let queryMajstor = PFUser.query()
+//        queryMajstor?.getObjectInBackground(withId: majstorId, block: { (object, error) in
+//            if let err = error {
+//                print(err.localizedDescription)
+//            }else{
+//                if let majstor = object as? PFUser {
+//                    self.tipMajstor.text = majstor["type"] as? String
+//                    self.imePrezimeMajstor.text = majstor["name"] as? String
+//                    self.emailMajstor.text = majstor.email
+//                    self.telefonMajstor.text = majstor["phone"] as? String
+//                }
+//            }
+//        })
+//
+//        otkaziKopce.isHidden = true
+//        cenaDatumPonuda.isHidden = true
+//        prifatiKopce.isHidden = true
+//        odbijKopce.isHidden = true
+//        zakazana_ZavrsenaRabota.isHidden = true //datum
+//        zavrsenaRabotaSlika.isHidden = true
+//        if status == "aktivno" {
+//            datumBaranje.text = datum
+//            otkaziKopce.isHidden = false
+//        }else if status == "ponuda"{
+//            cenaDatumPonuda.isHidden = false
+//            prifatiKopce.isHidden = false
+//            odbijKopce.isHidden = false
+//        }else if status == "zakazano" {
+//            zakazana_ZavrsenaRabota.isHidden = false
+//        }else if status == "zavrseno"{
+//            zakazana_ZavrsenaRabota.isHidden = false
+//            zavrsenaRabotaSlika.isHidden = false
+//        }
     }
     
     @IBAction func otkaziPressed(_ sender: Any) {
@@ -135,24 +135,53 @@ class DetaliBaranjeKorisnikViewController: UIViewController {
                 self.status = baranje["status"] as! String
                 print(baranje["status"] as! String)
                 
-//                self.niza.append(baranje["majstorId"] as! String) //0
-//                self.niza.append(baranje["datum"] as! String) //1
-//                self.niza.append(baranje["opisDefekt"] as! String) //2
-//                self.niza.append(baranje["status"] as! String) //3
+                
+                self.datumBaranje.text = self.datum
+                self.opisDefekt.text = self.opis
+                let queryMajstor = PFUser.query()
+                queryMajstor?.getObjectInBackground(withId: self.majstorId, block: { (object, error) in
+                    if let err = error {
+                        print(err.localizedDescription)
+                    }else{
+                        if let majstor = object as? PFUser {
+                            self.tipMajstor.text = majstor["type"] as? String
+                            self.imePrezimeMajstor.text = majstor["name"] as? String
+                            self.emailMajstor.text = majstor.email
+                            self.telefonMajstor.text = majstor["phone"] as? String
+                        }
+                    }
+                })
+                
+                self.otkaziKopce.isHidden = true
+                self.cenaDatumPonuda.isHidden = true
+                self.prifatiKopce.isHidden = true
+                self.odbijKopce.isHidden = true
+                self.zakazana_ZavrsenaRabota.isHidden = true //datum
+                self.zavrsenaRabotaSlika.isHidden = true
+                if self.status == "aktivno" {
+                    self.statusBaranje.text = self.status
+                    self.datumBaranje.text = self.datum
+                    self.otkaziKopce.isHidden = false
+                }else if self.status == "ponuda"{
+                    self.statusBaranje.text = self.status
+                    self.cenaDatumPonuda.isHidden = false
+                    self.prifatiKopce.isHidden = false
+                    self.odbijKopce.isHidden = false
+                }else if self.status == "zakazano" {
+                    self.zakazana_ZavrsenaRabota.isHidden = false
+                }else if self.status == "zavrseno"{
+                    self.statusBaranje.text = self.status
+                    self.zakazana_ZavrsenaRabota.isHidden = false
+                    self.zavrsenaRabotaSlika.isHidden = false
+                }
+                
+
             }else{
                 print("nema rezultat")
             }
         }
     }
    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+  
 
 }

@@ -36,24 +36,40 @@ class DetaliBaranjeMajstorViewController: UIViewController {
                     self.opis = baranje["opisDefekt"] as! String
                     self.opisDefekt.text = baranje["opisDefekt"] as? String
                     self.korisnikId = baranje["korisnikId"] as! String
+                
+                self.datumBaranje.text = self.datum
+                self.opisDefekt.text = self.opis
+                
+                let queryMajstor = PFUser.query()
+                queryMajstor?.getObjectInBackground(withId: self.korisnikId, block: { (object, error) in
+                    if let err = error {
+                        print(err.localizedDescription)
+                    }else{
+                        if let korisnik = object as? PFUser {
+                            self.imePrezimeKorisnik.text = korisnik["name"] as? String
+                            self.emailKorsnik.text = korisnik.email
+                            self.telefonKorisnik.text = korisnik["phone"] as? String
+                        }
+                    }
+                })
                 }
             
         }
-        datumBaranje.text = datum
-        opisDefekt.text = opis
-        
-        let queryMajstor = PFUser.query()
-        queryMajstor?.getObjectInBackground(withId: korisnikId, block: { (object, error) in
-            if let err = error {
-                print(err.localizedDescription)
-            }else{
-                if let korisnik = object as? PFUser {
-                    self.imePrezimeKorisnik.text = korisnik["name"] as? String
-                    self.emailKorsnik.text = korisnik.email
-                    self.telefonKorisnik.text = korisnik["phone"] as? String
-                }
-            }
-        })
+//        datumBaranje.text = datum
+//        opisDefekt.text = opis
+//
+//        let queryMajstor = PFUser.query()
+//        queryMajstor?.getObjectInBackground(withId: korisnikId, block: { (object, error) in
+//            if let err = error {
+//                print(err.localizedDescription)
+//            }else{
+//                if let korisnik = object as? PFUser {
+//                    self.imePrezimeKorisnik.text = korisnik["name"] as? String
+//                    self.emailKorsnik.text = korisnik.email
+//                    self.telefonKorisnik.text = korisnik["phone"] as? String
+//                }
+//            }
+//        })
         // Do any additional setup after loading the view.
     }
     
