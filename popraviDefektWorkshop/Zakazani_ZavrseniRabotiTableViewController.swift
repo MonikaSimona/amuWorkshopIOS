@@ -15,9 +15,10 @@ class Zakazani_ZavrseniRabotiTableViewController: UITableViewController {
     var rabotiDatum = [String]()
     var rabotiStatus = [String]()
     var objectIds = [String]()
+    var baranjeIds = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        updateTable()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -48,7 +49,7 @@ class Zakazani_ZavrseniRabotiTableViewController: UITableViewController {
             }else{
                 print("pred da zeme ime")
                 if let korisnik = object {
-                    print("od tabela \(korisnik["name"] as! String)")
+//                    print("od tabela \(korisnik["name"] as! String)")
                     cell.textLabel?.text = korisnik["name"] as? String
                     
                 }
@@ -63,6 +64,9 @@ class Zakazani_ZavrseniRabotiTableViewController: UITableViewController {
         }else if status == "zakazano"{
             cell.textLabel?.textColor = UIColor.red
             cell.detailTextLabel?.textColor = UIColor.red
+        }else{
+            cell.textLabel?.textColor = UIColor.black
+            cell.detailTextLabel?.textColor = UIColor.black
         }
 
         return cell
@@ -83,8 +87,9 @@ class Zakazani_ZavrseniRabotiTableViewController: UITableViewController {
                 if let raboti = objects {
                     for rabota in raboti{
                         self.rabotiKorisnikIds.append(rabota["korisnikId"] as! String)
-                        self.rabotiDatum.append(rabota["datum"] as! String )
+                        self.rabotiDatum.append(rabota["datumPonuda"] as! String )
                         self.rabotiStatus.append(rabota["status"] as! String)
+                        self.baranjeIds.append(rabota["baranjeId"] as! String)
                         self.objectIds.append(rabota.objectId!)
 //                        print(baranje["korisnikId"] as! String)
 //                        print(baranje["status"] as! String)
@@ -101,6 +106,7 @@ class Zakazani_ZavrseniRabotiTableViewController: UITableViewController {
             if let index  = tableView.indexPathForSelectedRow?.row{
                 let rabota = segue.destination as! DetaliRabotaViewController
                 rabota.rabotaId = objectIds[index]
+                rabota.baranjeId = baranjeIds[index]
                 
             }
         }

@@ -25,6 +25,7 @@ extension UIImage{
 class DetaliRabotaViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
     var rabotaId: String = ""
+    var baranjeId: String = ""
     @IBOutlet weak var datumRabota: UILabel!
     
     @IBOutlet weak var zavrsenaRabotaSlika: UIImageView!
@@ -60,7 +61,7 @@ class DetaliRabotaViewController: UIViewController,UIImagePickerControllerDelega
     }
     
     @IBAction func zavrsiRabotaPressed(_ sender: Any) {
-        var baranjeId = ""
+//        var baranjeId = ""
         if let image = zavrsenaRabotaSlika.image{
 //            let rabota = PFObject(className: "Rabota")
 //            rabota["datum"] = datumZavrsuvanjeField.text
@@ -84,7 +85,7 @@ class DetaliRabotaViewController: UIViewController,UIImagePickerControllerDelega
                     print(err.localizedDescription)
                 }else{
                     if let rabota  = object{
-                        rabota["datum"] = self.datumZavrsuvanjeField.text
+                        rabota["datumZavrsuvanje"] = self.datumZavrsuvanjeField.text
                         rabota["status"] = "zavrseno"
                         rabota["majstorId"] = PFUser.current()?.objectId
                         if let imagedata = image.jpeg(.medium){
@@ -92,6 +93,7 @@ class DetaliRabotaViewController: UIViewController,UIImagePickerControllerDelega
                             rabota["imageFile"] = imageFile
                             self.datumZavrsuvanjeField.text = ""
                             self.zavrsenaRabotaSlika.image = nil
+                            rabota.saveInBackground()
                            
                         }
                     }
@@ -99,16 +101,17 @@ class DetaliRabotaViewController: UIViewController,UIImagePickerControllerDelega
             }
         }
         
-        let queryRabota = PFQuery(className: "Rabota")
-        queryRabota.getObjectInBackground(withId: rabotaId) { (object, error) in
-            if let err = error {
-                print(err.localizedDescription)
-            }else{
-                if let rabota =  object {
-                    baranjeId = rabota["baranjeId"] as! String
-                }
-            }
-        }
+//        let queryRabota = PFQuery(className: "Rabota")
+//        queryRabota.getObjectInBackground(withId: rabotaId) { (object, error) in
+//            if let err = error {
+//                print(err.localizedDescription)
+//            }else{
+//                if let rabota =  object {
+//                    baranjeId = rabota["baranjeId"] as! String
+//
+//                }
+//            }
+//        }
         
         let queryBaranje = PFQuery(className: "Baranje")
         queryBaranje.getObjectInBackground(withId: baranjeId) { (object, error) in
@@ -117,18 +120,11 @@ class DetaliRabotaViewController: UIViewController,UIImagePickerControllerDelega
             }else{
                 if let baranje  =  object {
                     baranje["status"] = "zavrseno"
+                    baranje.saveInBackground()
                 }
             }
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+ 
 
 }

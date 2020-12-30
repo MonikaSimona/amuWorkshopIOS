@@ -12,10 +12,11 @@ import Parse
 class DetaliBaranjeKorisnikViewController: UIViewController {
     
     var baranjeId: String = ""
-    var datum = ""
-    var opis = ""
-    var majstorId = "" //name,email,phone,tip
-    var status = ""
+    var datum: String = ""
+    var opis: String = ""
+    var majstorId: String = "" //name,email,phone,tip
+    var status: String = ""
+//    var niza = [String]()
     
     @IBOutlet weak var datumBaranje: UILabel!
     @IBOutlet weak var tipMajstor: UILabel!
@@ -33,19 +34,10 @@ class DetaliBaranjeKorisnikViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let query = PFQuery(className: "Baranja")
-        query.getObjectInBackground(withId: baranjeId, block: { (object, error) in
-            if let err = error{
-                print(err.localizedDescription)
-            }else{
-                if let baranje  = object{
-                    self.datum = baranje["datum"] as! String
-                    self.opis = baranje["opis"] as! String
-                    self.majstorId = baranje["majstorId"] as! String
-                    self.status = baranje["status"] as! String
-                }
-            }
-        })
+        print("baranje id \(baranjeId)")
+       getBaranje()
+      
+        print("majstor id \(majstorId)")
         
         datumBaranje.text = datum
         opisDefekt.text = opis
@@ -105,6 +97,7 @@ class DetaliBaranjeKorisnikViewController: UIViewController {
             }else{
                 if let baranje = object {
                     baranje["status"] = "zakazano"
+                    baranje.saveInBackground()
                 }
             }
         }
@@ -117,12 +110,39 @@ class DetaliBaranjeKorisnikViewController: UIViewController {
             }else{
                 if let baranje = object {
                     baranje["status"] = "zakazano"
+                    baranje.saveInBackground()
                 }
             }
         }
     }
     @IBAction func odbijPressed(_ sender: Any) {
         //baranje["status"] = "odbienaPonuda"
+    }
+    func getBaranje () {
+        let query = PFQuery(className: "Baranje")
+        query.whereKey("objectId", equalTo: baranjeId)
+        
+        query.getFirstObjectInBackground { (object, error) in
+            if let err = error{
+                print(err.localizedDescription)
+            }else if let baranje = object{
+                self.datum = (baranje["datum"] as? String)!
+                print(baranje["datum"] as! String)
+                self.opis = (baranje["opisDefekt"] as? String)!
+                print(baranje["opisDefekt"] as! String)
+                self.majstorId = baranje["majstorId"] as! String
+                print(baranje["majstorId"] as! String)
+                self.status = baranje["status"] as! String
+                print(baranje["status"] as! String)
+                
+//                self.niza.append(baranje["majstorId"] as! String) //0
+//                self.niza.append(baranje["datum"] as! String) //1
+//                self.niza.append(baranje["opisDefekt"] as! String) //2
+//                self.niza.append(baranje["status"] as! String) //3
+            }else{
+                print("nema rezultat")
+            }
+        }
     }
    
     /*

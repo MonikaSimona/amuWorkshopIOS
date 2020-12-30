@@ -25,19 +25,20 @@ class DetaliBaranjeMajstorViewController: UIViewController {
     @IBOutlet weak var datumPonuda: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let query = PFQuery(className: "Baranja")
-        query.getObjectInBackground(withId: baranjeId, block: { (object, error) in
+        print("baranjeID \(baranjeId)")
+        let query = PFQuery(className: "Baranje")
+        query.getObjectInBackground(withId: baranjeId) { (object, error) in
             if let err = error{
                 print(err.localizedDescription)
-            }else{
-                if let baranje  = object{
+            } else if let baranje = object{
                     self.datum = baranje["datum"] as! String
-                    self.opis = baranje["opis"] as! String
+                    self.datumBaranje.text = baranje["datum"] as? String
+                    self.opis = baranje["opisDefekt"] as! String
+                    self.opisDefekt.text = baranje["opisDefekt"] as? String
                     self.korisnikId = baranje["korisnikId"] as! String
                 }
-            }
-        })
+            
+        }
         datumBaranje.text = datum
         opisDefekt.text = opis
         
@@ -62,17 +63,24 @@ class DetaliBaranjeMajstorViewController: UIViewController {
         queryBaranje.getObjectInBackground(withId: baranjeId) { (object, error) in
             if let err = error {
                 print(err.localizedDescription)
-            }else{
-                if let baranje  =  object {
+            }else if let baranje  =  object {
                  baranje["status"] = "ponuda"
+                baranje.saveInBackground()
+                    print("ispratena ponuda")
                 }
-            }
+            
         }
         let rabota = PFObject(className: "Rabota")
+        rabota["majstorId"] = PFUser.current()?.objectId
+        rabota["korisnikId"] = korisnikId
         rabota["baranjeId"] = baranjeId
         rabota["datumPonuda"] = datumPonuda.text
         rabota["cena"] = cenaPonuda.text
+        rabota["status"] = "ponuda"
         rabota.saveInBackground()
+        
+        cenaPonuda.text = ""
+        datumPonuda.text = ""
     }
     @IBAction func odbijBaranjePressed(_ sender: Any) {
         //baranje["status"] == "odbienoBaranje"
