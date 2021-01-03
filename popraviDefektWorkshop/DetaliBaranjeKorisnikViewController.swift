@@ -12,12 +12,15 @@ import Parse
 class DetaliBaranjeKorisnikViewController: UIViewController {
     
     var baranjeId: String = ""
+    var lokacijaKorisnik: String  = ""
+    var koordinati: CLLocationCoordinate2D? = nil
     var datum: String = ""
     var opis: String = ""
     var majstorId: String = "" //name,email,phone,tip
     var status: String = ""
-
-    
+    var cenaPonuda: String = ""
+    var datumPonuda: String = ""
+    var datumZavrsuvanje: String = ""
     @IBOutlet weak var datumBaranje: UILabel!
     @IBOutlet weak var tipMajstor: UILabel!
     @IBOutlet weak var opisDefekt: UILabel!
@@ -34,46 +37,12 @@ class DetaliBaranjeKorisnikViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("baranje id \(baranjeId)")
+        
        getBaranje()
       
-        print("majstor id \(majstorId)")
         
-//        datumBaranje.text = datum
-//        opisDefekt.text = opis
-//        let queryMajstor = PFUser.query()
-//        queryMajstor?.getObjectInBackground(withId: majstorId, block: { (object, error) in
-//            if let err = error {
-//                print(err.localizedDescription)
-//            }else{
-//                if let majstor = object as? PFUser {
-//                    self.tipMajstor.text = majstor["type"] as? String
-//                    self.imePrezimeMajstor.text = majstor["name"] as? String
-//                    self.emailMajstor.text = majstor.email
-//                    self.telefonMajstor.text = majstor["phone"] as? String
-//                }
-//            }
-//        })
-//
-//        otkaziKopce.isHidden = true
-//        cenaDatumPonuda.isHidden = true
-//        prifatiKopce.isHidden = true
-//        odbijKopce.isHidden = true
-//        zakazana_ZavrsenaRabota.isHidden = true //datum
-//        zavrsenaRabotaSlika.isHidden = true
-//        if status == "aktivno" {
-//            datumBaranje.text = datum
-//            otkaziKopce.isHidden = false
-//        }else if status == "ponuda"{
-//            cenaDatumPonuda.isHidden = false
-//            prifatiKopce.isHidden = false
-//            odbijKopce.isHidden = false
-//        }else if status == "zakazano" {
-//            zakazana_ZavrsenaRabota.isHidden = false
-//        }else if status == "zavrseno"{
-//            zakazana_ZavrsenaRabota.isHidden = false
-//            zavrsenaRabotaSlika.isHidden = false
-//        }
+        
+
     }
     
     @IBAction func otkaziPressed(_ sender: Any) {
@@ -97,31 +66,56 @@ class DetaliBaranjeKorisnikViewController: UIViewController {
             }else{
                 if let baranje = object {
                     baranje["status"] = "zakazano"
+                    baranje["korisnikLokacija"] = self.lokacijaKorisnik
+                    baranje["koordinati"] = self.koordinati
                     baranje.saveInBackground()
                 }
             }
         }
         let queryRabota = PFQuery(className: "Rabota")
         queryRabota.whereKey("baranjeId", equalTo: baranjeId)
+        queryRabota.getFirstObjectInBackground { (object, error) in
+            if let err = error {
+                print(err.localizedDescription)
+            }else{
+                if let rabota = object {
+                    rabota["status"] = "zakazano"
+                    rabota["korisnikLokacija"] = self.lokacijaKorisnik
+                    rabota["koordinati"] = self.koordinati
+                    rabota.saveInBackground()
+                }
+            }
+        }
         
+        
+    }
+    @IBAction func odbijPressed(_ sender: Any) {
+        let query = PFQuery(className: "Baranje")
         query.getObjectInBackground(withId: baranjeId) { (object, error) in
             if let err = error {
                 print(err.localizedDescription)
             }else{
                 if let baranje = object {
-                    baranje["status"] = "zakazano"
-                    baranje.saveInBackground()
+                    baranje.deleteInBackground()
                 }
             }
         }
-    }
-    @IBAction func odbijPressed(_ sender: Any) {
-        //baranje["status"] = "odbienaPonuda"
+        let queryRabota = PFQuery(className: "Rabota")
+        queryRabota.whereKey("baranjeId", equalTo: baranjeId)
+        queryRabota.getFirstObjectInBackground { (object, error) in
+            if let err = error {
+                print(err.localizedDescription)
+            }else{
+                if let rabota = object {
+                    rabota.deleteInBackground()
+                }
+            }
+        }
+        
     }
     func getBaranje () {
         let query = PFQuery(className: "Baranje")
         query.whereKey("objectId", equalTo: baranjeId)
-        
         query.getFirstObjectInBackground { (object, error) in
             if let err = error{
                 print(err.localizedDescription)
@@ -135,53 +129,72 @@ class DetaliBaranjeKorisnikViewController: UIViewController {
                 self.status = baranje["status"] as! String
                 print(baranje["status"] as! String)
                 
-                
-                self.datumBaranje.text = self.datum
-                self.opisDefekt.text = self.opis
-                let queryMajstor = PFUser.query()
-                queryMajstor?.getObjectInBackground(withId: self.majstorId, block: { (object, error) in
-                    if let err = error {
+                let queryRabota = PFQuery(className: "Rabota")
+                queryRabota.whereKey("baranjeId", equalTo: self.baranjeId)
+                queryRabota.getFirstObjectInBackground(block: { (object, error) in
+                    if let err =  error {
                         print(err.localizedDescription)
-                    }else{
-                        if let majstor = object as? PFUser {
-                            self.tipMajstor.text = majstor["type"] as? String
-                            self.imePrezimeMajstor.text = majstor["name"] as? String
-                            self.emailMajstor.text = majstor.email
-                            self.telefonMajstor.text = majstor["phone"] as? String
+                    }else if let rabota = object{
+                            self.cenaPonuda = rabota["cena"] as! String
+                            print("cena \(rabota["cena"] as! String)")
+                            if let datumPonuda = rabota["datumPonuda"] as? String{
+                                self.datumPonuda = datumPonuda
+                            }
+                            if let datumZavr = rabota["datumZavrsuvanje"] as? String{
+                                self.datumZavrsuvanje = datumZavr
+                            }
+                            
+                        self.datumBaranje.text = "Pobarano na: \(self.datum)"
+                        self.opisDefekt.text = "Opis: \(self.opis)"
+                        let queryMajstor = PFUser.query()
+                        queryMajstor?.getObjectInBackground(withId: self.majstorId, block: { (object, error) in
+                            if let err = error {
+                                print(err.localizedDescription)
+                            }else{
+                                if let majstor = object as? PFUser {
+                                    self.tipMajstor.text = majstor["type"] as? String
+                                    self.imePrezimeMajstor.text = majstor["name"] as? String
+                                    self.emailMajstor.text = majstor.username?.components(separatedBy: "_")[0]
+                                    self.telefonMajstor.text = majstor["phone"] as? String
+                                }
+                            }
+                        })
+                        
+                        self.otkaziKopce.isHidden = true
+                        self.cenaDatumPonuda.isHidden = true
+                        self.prifatiKopce.isHidden = true
+                        self.odbijKopce.isHidden = true
+                        self.zakazana_ZavrsenaRabota.isHidden = true //datum
+                        self.zavrsenaRabotaSlika.isHidden = true
+                        if self.status == "aktivno" {
+                            self.statusBaranje.text = "Status: \(self.status)"
+                            self.datumBaranje.text = self.datum
+                            self.otkaziKopce.isHidden = false
+                        }else if self.status == "ponuda"{
+                            self.statusBaranje.text = "Status: \(self.status)"
+                            self.cenaDatumPonuda.isHidden = false
+                            self.cenaDatumPonuda.text = "Cena: \(self.cenaPonuda) , \(self.datumPonuda)"
+                            self.prifatiKopce.isHidden = false
+                            self.odbijKopce.isHidden = false
+                        }else if self.status == "zakazano" {
+                            self.statusBaranje.text = "Status: \(self.status)"
+                            self.zakazana_ZavrsenaRabota.isHidden = false
+                            self.zakazana_ZavrsenaRabota.text = "Zakazana rabota na \(self.datumPonuda)"
+                        }else if self.status == "zavrseno"{
+                            self.statusBaranje.text = "Status: \(self.status)"
+                            self.zakazana_ZavrsenaRabota.isHidden = false
+                            self.zavrsenaRabotaSlika.isHidden = false
+                            self.zakazana_ZavrsenaRabota.text = "Zavrsena rabota na \(self.datumZavrsuvanje)"
                         }
+                        
+                    }else{
+                        print("nema rezultat")
                     }
-                })
-                
-                self.otkaziKopce.isHidden = true
-                self.cenaDatumPonuda.isHidden = true
-                self.prifatiKopce.isHidden = true
-                self.odbijKopce.isHidden = true
-                self.zakazana_ZavrsenaRabota.isHidden = true //datum
-                self.zavrsenaRabotaSlika.isHidden = true
-                if self.status == "aktivno" {
-                    self.statusBaranje.text = self.status
-                    self.datumBaranje.text = self.datum
-                    self.otkaziKopce.isHidden = false
-                }else if self.status == "ponuda"{
-                    self.statusBaranje.text = self.status
-                    self.cenaDatumPonuda.isHidden = false
-                    self.prifatiKopce.isHidden = false
-                    self.odbijKopce.isHidden = false
-                }else if self.status == "zakazano" {
-                    self.zakazana_ZavrsenaRabota.isHidden = false
-                }else if self.status == "zavrseno"{
-                    self.statusBaranje.text = self.status
-                    self.zakazana_ZavrsenaRabota.isHidden = false
-                    self.zavrsenaRabotaSlika.isHidden = false
+                            
+                        })
                 }
-                
-
-            }else{
-                print("nema rezultat")
-            }
+        }
         }
     }
-   
-  
 
-}
+

@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import MapKit
 
 extension UIImage{
     enum JPEGQuality: CGFloat{
@@ -26,6 +27,8 @@ class DetaliRabotaViewController: UIViewController,UIImagePickerControllerDelega
 
     var rabotaId: String = ""
     var baranjeId: String = ""
+    var korisnikId: String = ""
+    var koordinati: CLLocationCoordinate2D? = nil
     @IBOutlet weak var datumRabota: UILabel!
     
     @IBOutlet weak var zavrsenaRabotaSlika: UIImageView!
@@ -39,11 +42,50 @@ class DetaliRabotaViewController: UIViewController,UIImagePickerControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let query  = PFQuery(className: "Rabota")
+        query.getFirstObjectInBackground { (object, error) in
+            if let err = error{
+                print(err.localizedDescription)
+            }else{
+                if let rabota = object{
+                    self.datumRabota.text = "Datum na rabotenje: \(String(describing: rabota["datumPonuda"] as? String))"
+                    self.statusRabota.text = "Status: \(String(describing: rabota["status"] as? String))"
+                    self.adresaDefekt.text = "Lokacija \(String(describing: rabota["korisnikLokacija"]))"
+                    self.korisnikId = rabota["korisnikId"] as! String
+                    self.koordinati = rabota["koordinati"] as? CLLocationCoordinate2D
+                    print(self.koordinati!)
+                    
+                    let korisnik = PFUser.query()
+                    korisnik?.getObjectInBackground(withId: self.korisnikId, block: { (object, error) in
+                        if let err = error {
+                            print(err.localizedDescription)
+                        }else{
+                            if let korisnik = object as? PFUser{
+                                self.imePrezimeKorisnik.text = korisnik["name"] as? String
+                                self.emailKorisnik.text = korisnik.email
+                            }
+                        }
+                    })
+                    
+                    
+                }
+            }
+        }
     }
     
 
     @IBAction func konLokacijaPressed(_ sender: Any) {
+        let latitude:CLLocationDegrees = (koordinati?.latitude)!
+        let longitude:CLLocationDegrees = (koordinati?.longitude)!
+        
+        let regionDistance:CLLocationDistance = 1000;
+        let coordinates = CLLocationCoordinate2DMake(latitude,longitude)
+        let regionSpan = MKCoordinateRegion(center: coordinates,latitudinalMeters: regionDistance,longitudinalMeters: regionDistance)
+        let options = [ MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center), MKLaunchOptionsMapCenterKey: NSValue(mkCoordinateSpan: regionSpan.span)]
+        let placemark = MKPlacemark(coordinate: coordinates)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = "Defekt"
+        mapItem.openInMaps(launchOptions: options)
     }
     @IBAction func izberiSlikaPressed(_ sender: Any) {
         let imagePicker = UIImagePickerController()

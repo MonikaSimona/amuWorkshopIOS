@@ -32,9 +32,9 @@ class DetaliBaranjeMajstorViewController: UIViewController {
                 print(err.localizedDescription)
             } else if let baranje = object{
                     self.datum = baranje["datum"] as! String
-                    self.datumBaranje.text = baranje["datum"] as? String
+                self.datumBaranje.text = "Pobarano na: \(String(describing: baranje["datum"] as? String))"
                     self.opis = baranje["opisDefekt"] as! String
-                    self.opisDefekt.text = baranje["opisDefekt"] as? String
+                self.opisDefekt.text = " Opis: \(String(describing: baranje["opisDefekt"] as? String))"
                     self.korisnikId = baranje["korisnikId"] as! String
                 
                 self.datumBaranje.text = self.datum
@@ -46,7 +46,7 @@ class DetaliBaranjeMajstorViewController: UIViewController {
                         print(err.localizedDescription)
                     }else{
                         if let korisnik = object as? PFUser {
-                            self.imePrezimeKorisnik.text = korisnik["name"] as? String
+                            self.imePrezimeKorisnik.text = "Pobaral: \(String(describing: korisnik["name"] as? String))" 
                             self.emailKorsnik.text = korisnik.email
                             self.telefonKorisnik.text = korisnik["phone"] as? String
                         }
@@ -81,6 +81,7 @@ class DetaliBaranjeMajstorViewController: UIViewController {
                 print(err.localizedDescription)
             }else if let baranje  =  object {
                  baranje["status"] = "ponuda"
+                baranje["datumPonuda"] = self.datumPonuda.text
                 baranje.saveInBackground()
                     print("ispratena ponuda")
                 }

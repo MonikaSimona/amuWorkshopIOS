@@ -13,10 +13,12 @@ class ListaOdMajstoriTableViewController: UITableViewController {
     var tipMajstor: String = ""
     var opisDefekt: String = ""
     var lokacijaKorisnik: String = ""
+    var koordinati: CLLocationCoordinate2D? = nil
     
     var majstoriEmail = [String]()
     var majstoriPhone = [String]()
     var majstoriName = [String]()
+    var korisnikId = [String]()
     
     var objectIds = [String]()
 
@@ -50,19 +52,26 @@ class ListaOdMajstoriTableViewController: UITableViewController {
             }else{
                 if let baranje = object {
                      let status = baranje["status"] as! String
-                    if status == "aktivno"{
-                        cell.textLabel?.textColor = UIColor.yellow
-                        cell.detailTextLabel?.textColor = UIColor.yellow
-                    }else if status == "ponuda"{
-                        cell.textLabel?.textColor = UIColor.red
-                        cell.detailTextLabel?.textColor = UIColor.red
-                    }else if status == "zakazano"{
-                        cell.textLabel?.textColor = UIColor.blue
-                        cell.detailTextLabel?.textColor = UIColor.blue
-                    }else if status == "zavrseno"{
-                        cell.textLabel?.textColor = UIColor.green
-                        cell.detailTextLabel?.textColor = UIColor.green
+                    let korisnikId = baranje["korisnikId"] as! String
+                    if korisnikId == PFUser.current()?.objectId{
+                        if status == "aktivno"{
+                            cell.textLabel?.textColor = UIColor.yellow
+                            cell.detailTextLabel?.textColor = UIColor.yellow
+                        }else if status == "ponuda"{
+                            cell.textLabel?.textColor = UIColor.red
+                            cell.detailTextLabel?.textColor = UIColor.red
+                        }else if status == "zakazano"{
+                            cell.textLabel?.textColor = UIColor.blue
+                            cell.detailTextLabel?.textColor = UIColor.blue
+                        }else if status == "zavrseno"{
+                            cell.textLabel?.textColor = UIColor.green
+                            cell.detailTextLabel?.textColor = UIColor.green
+                        }
+                    }else{
+                        cell.textLabel?.textColor = UIColor.black
+                        cell.detailTextLabel?.textColor = UIColor.black
                     }
+                   
                 }
                 
             }
@@ -80,6 +89,7 @@ class ListaOdMajstoriTableViewController: UITableViewController {
                 portfolio.objectId = objectIds[index]
                 portfolio.opisDefekt = opisDefekt
                 portfolio.lokacijaKorisnik = lokacijaKorisnik
+                portfolio.koordinati = koordinati
                 
             }
         }
@@ -90,6 +100,7 @@ class ListaOdMajstoriTableViewController: UITableViewController {
         self.majstoriEmail.removeAll()
         self.majstoriPhone.removeAll()
         self.majstoriName.removeAll()
+        
         self.objectIds.removeAll()
         
         let query = PFUser.query()
@@ -109,6 +120,7 @@ class ListaOdMajstoriTableViewController: UITableViewController {
                                     self.majstoriEmail.append(username)
                                     self.majstoriName.append(user["name"] as! String)
                                     self.majstoriPhone.append(user["phone"] as! String)
+                                    
                                     self.objectIds.append(objectId)
                                     self.tableView.reloadData()
                                 }

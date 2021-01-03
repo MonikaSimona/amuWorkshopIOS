@@ -56,6 +56,8 @@ class BaranjaMajstorTableViewController: UITableViewController {
             })
             cell.detailTextLabel?.text = baranjaDatum[indexPath.row]
         }else{
+            cell.textLabel?.text = ""
+            cell.detailTextLabel?.text = ""
             print("Greska")
         }
         

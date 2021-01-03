@@ -14,6 +14,7 @@ class PortfolioMajstorTableViewController: UITableViewController {
     var dates = [String]()
     var opisDefekt: String = ""
     var lokacijaKorisnik: String = ""
+    var koordinati: CLLocationCoordinate2D? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +51,8 @@ class PortfolioMajstorTableViewController: UITableViewController {
         baranje["majstorId"] = objectId
         baranje["opisDefekt"] = opisDefekt
         baranje["datum"] = dateString
-        baranje["korisnik"] = lokacijaKorisnik
+        baranje["korisnikLokacija"] = lokacijaKorisnik
+        baranje["koordinati"] = koordinati
         baranje["status"] = "aktivno"
         baranje.saveInBackground { (success, error) in
             if let err = error{

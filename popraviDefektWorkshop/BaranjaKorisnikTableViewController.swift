@@ -14,6 +14,8 @@ class BaranjaKorisnikTableViewController: UITableViewController {
     var baranjaDatum = [String]()
     var baranjaStatus = [String]()
     var objectIds = [String]()
+    var lokacijaKorisnik: String = ""
+    var koordinati: CLLocationCoordinate2D? = nil
    
 
     override func viewDidLoad() {
@@ -78,6 +80,8 @@ class BaranjaKorisnikTableViewController: UITableViewController {
             if let index  = tableView.indexPathForSelectedRow?.row{
                 let baranje = segue.destination as! DetaliBaranjeKorisnikViewController
                 baranje.baranjeId = objectIds[index]
+                baranje.lokacijaKorisnik = lokacijaKorisnik
+                baranje.koordinati = koordinati
                 
             }
         }
