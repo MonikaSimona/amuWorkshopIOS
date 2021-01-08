@@ -14,7 +14,9 @@ class PortfolioMajstorTableViewController: UITableViewController {
     var dates = [String]()
     var opisDefekt: String = ""
     var lokacijaKorisnik: String = ""
-    var koordinati: CLLocationCoordinate2D? = nil
+//    var koordinati: CLLocationCoordinate2D? = nil
+    var long: Double = 0
+    var lat: Double = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +26,15 @@ class PortfolioMajstorTableViewController: UITableViewController {
         query.findObjectsInBackground { (objects, error) in
             if let raboti = objects{
                 for rabota in raboti{
-                    self.images.append(rabota["imageFile"] as! PFFileObject)
-                    self.dates.append(rabota["datumPonuda"] as! String)
-                    self.tableView.reloadData()
+                    if let imageFile = rabota["imageFile"]{
+                        if let datumPonuda = rabota["datumPonuda"]{
+                            self.images.append(imageFile as! PFFileObject)
+                            self.dates.append(datumPonuda as! String)
+                            self.tableView.reloadData()
+                        }
+                    }
+                    
+                    
                 }
             }
         }
@@ -52,15 +60,27 @@ class PortfolioMajstorTableViewController: UITableViewController {
         baranje["opisDefekt"] = opisDefekt
         baranje["datum"] = dateString
         baranje["korisnikLokacija"] = lokacijaKorisnik
-        baranje["koordinati"] = koordinati
+        baranje["lat"] = lat
+        baranje["long"] = long
         baranje["status"] = "aktivno"
+        
         baranje.saveInBackground { (success, error) in
             if let err = error{
                 print(err.localizedDescription)
             }else{
                 print(success.description)
                 print("Napraveno Baranje")
+                
             }
+            print(baranje.objectId!)
+            print(self.lat)
+            print(self.long)
+            let rabota = PFObject(className: "Rabota")
+            rabota["lat"] = self.lat
+            rabota["long"] = self.long
+            rabota["baranjeId"] = baranje.objectId
+            rabota.saveInBackground()
+            print("saved rabota")
         }
         
     }
@@ -78,15 +98,18 @@ class PortfolioMajstorTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PortfolioCell", for: indexPath) as! PortfolioTableViewCell
-        images[indexPath.row].getDataInBackground { (data, error) in
-            if let imagedata = data {
-                if let img  = UIImage(data: imagedata){
-                    cell.solvedImage.image = img
+        if !images.isEmpty{
+            images[indexPath.row].getDataInBackground { (data, error) in
+                if let imagedata = data {
+                    if let img  = UIImage(data: imagedata){
+                        cell.solvedImage.image = img
+                    }
                 }
             }
+            
+            cell.solvedDatum.text = dates[indexPath.row]
         }
-
-        cell.solvedDatum.text = dates[indexPath.row]
+       
 
         return cell
     }

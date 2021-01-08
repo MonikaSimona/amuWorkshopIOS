@@ -19,6 +19,8 @@ class DefektViewController: UIViewController, MKMapViewDelegate{
     var tipNaMajstorString = ""
     var location = ""
     var coordinates: CLLocationCoordinate2D? = nil
+    var long: Double = 0
+    var lat: Double = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +45,9 @@ class DefektViewController: UIViewController, MKMapViewDelegate{
             destSegue?.tipMajstor = tipNaMajstorString
             destSegue?.opisDefekt = opisZaDefekt.text!
             destSegue?.lokacijaKorisnik = location
-            destSegue?.koordinati = coordinates
+//            destSegue?.koordinati = coordinates
+            destSegue?.lat = lat
+            destSegue?.long = long
             
         }
         
@@ -66,7 +70,9 @@ class DefektViewController: UIViewController, MKMapViewDelegate{
             let newCoordinate = self.map.convert(touchPoint, toCoordinateFrom: self.map)
             let newLocation = CLLocation(latitude: newCoordinate.latitude, longitude: newCoordinate.longitude)
                 print(newCoordinate)
-            coordinates = newCoordinate
+//            coordinates = newCoordinate
+            long = newCoordinate.longitude
+            lat  = newCoordinate.latitude 
             
             
             var title = ""

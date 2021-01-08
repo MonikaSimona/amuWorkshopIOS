@@ -84,23 +84,48 @@ class DetaliBaranjeMajstorViewController: UIViewController {
                 baranje["datumPonuda"] = self.datumPonuda.text
                 baranje.saveInBackground()
                     print("ispratena ponuda")
+                let rabota = PFQuery(className: "Rabota")
+                rabota.whereKey("baranjeId", equalTo: self.baranjeId)
+                rabota.getFirstObjectInBackground(block: { (object, err) in
+                    if let error = err {
+                        print(error.localizedDescription)
+                    }else if let rabota = object{
+                        rabota["majstorId"] = PFUser.current()?.objectId
+                                    rabota["korisnikId"] = self.korisnikId
+                                    rabota["baranjeId"] = self.baranjeId
+                                    rabota["datumPonuda"] = self.datumPonuda.text
+                                    rabota["cena"] = self.cenaPonuda.text
+                                    rabota["status"] = "ponuda"
+                        rabota.saveInBackground()
+                    }
+                })
+
+                
+                self.cenaPonuda.text = ""
+                self.datumPonuda.text = ""
                 }
             
         }
-        let rabota = PFObject(className: "Rabota")
-        rabota["majstorId"] = PFUser.current()?.objectId
-        rabota["korisnikId"] = korisnikId
-        rabota["baranjeId"] = baranjeId
-        rabota["datumPonuda"] = datumPonuda.text
-        rabota["cena"] = cenaPonuda.text
-        rabota["status"] = "ponuda"
-        rabota.saveInBackground()
         
-        cenaPonuda.text = ""
-        datumPonuda.text = ""
     }
     @IBAction func odbijBaranjePressed(_ sender: Any) {
-        //baranje["status"] == "odbienoBaranje"
+        let query = PFQuery(className: "Baranje")
+        query.getObjectInBackground(withId: baranjeId) { (object, error) in
+            if let err =  error{
+                print(err.localizedDescription)
+            }else if let baranje = object  {
+                baranje.deleteInBackground()
+            }
+            let rabota = PFQuery(className: "Rabota")
+            rabota.whereKey("baranjeId", equalTo: self.baranjeId)
+            rabota.getFirstObjectInBackground(block: { (object, error) in
+                if let err = error {
+                    print(err.localizedDescription)
+                }else if let rabota = object {
+                    rabota.deleteInBackground()
+                }
+            })
+        }
     }
     
     /*

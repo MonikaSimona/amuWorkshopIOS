@@ -47,7 +47,6 @@ class BaranjaMajstorTableViewController: UITableViewController {
                 }else{
                     print("pred da zeme ime")
                     if let korisnik = object {
-//                         print("od tabela \(korisnik["name"] as! String)")
                         cell.textLabel?.text = korisnik["name"] as? String
                        
                     }

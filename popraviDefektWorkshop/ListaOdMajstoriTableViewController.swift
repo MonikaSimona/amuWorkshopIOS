@@ -14,6 +14,8 @@ class ListaOdMajstoriTableViewController: UITableViewController {
     var opisDefekt: String = ""
     var lokacijaKorisnik: String = ""
     var koordinati: CLLocationCoordinate2D? = nil
+    var long: Double = 0
+    var lat: Double = 0
     
     var majstoriEmail = [String]()
     var majstoriPhone = [String]()
@@ -89,7 +91,10 @@ class ListaOdMajstoriTableViewController: UITableViewController {
                 portfolio.objectId = objectIds[index]
                 portfolio.opisDefekt = opisDefekt
                 portfolio.lokacijaKorisnik = lokacijaKorisnik
-                portfolio.koordinati = koordinati
+//                portfolio.koordinati = koordinati
+                portfolio.lat = lat
+                portfolio.long  = long
+                
                 
             }
         }

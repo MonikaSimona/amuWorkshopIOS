@@ -29,6 +29,8 @@ class DetaliRabotaViewController: UIViewController,UIImagePickerControllerDelega
     var baranjeId: String = ""
     var korisnikId: String = ""
     var koordinati: CLLocationCoordinate2D? = nil
+    var long: Double = 0
+    var lat: Double = 0
     @IBOutlet weak var datumRabota: UILabel!
     
     @IBOutlet weak var zavrsenaRabotaSlika: UIImageView!
@@ -41,20 +43,35 @@ class DetaliRabotaViewController: UIViewController,UIImagePickerControllerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print(baranjeId)
+        print(rabotaId)
         let query  = PFQuery(className: "Rabota")
+        query.whereKey("baranjeId", equalTo: baranjeId)
         query.getFirstObjectInBackground { (object, error) in
             if let err = error{
                 print(err.localizedDescription)
             }else{
                 if let rabota = object{
-                    self.datumRabota.text = "Datum na rabotenje: \(String(describing: rabota["datumPonuda"] as? String))"
-                    self.statusRabota.text = "Status: \(String(describing: rabota["status"] as? String))"
-                    self.adresaDefekt.text = "Lokacija \(String(describing: rabota["korisnikLokacija"]))"
-                    self.korisnikId = rabota["korisnikId"] as! String
-                    self.koordinati = rabota["koordinati"] as? CLLocationCoordinate2D
-                    print(self.koordinati!)
-                    
+                    if let datumRabota = rabota["datumPonuda"] as? String{
+                        if let status = rabota["status"] as? String{
+                            if let adresa = rabota["korisnikLokacija"] {
+                                if let korisnikId = rabota["korisnikId"] as? String{
+                                    if let lat = rabota["lat"] as? Double{
+                                        if let long = rabota["long"] as? Double{
+                                            self.datumRabota.text = "Datum na rabotenje: \(datumRabota)"
+                                            self.statusRabota.text = "Status: \(status)"
+                                            self.adresaDefekt.text = "Lokacija \(adresa)"
+                                            self.korisnikId = korisnikId
+                                            self.lat = lat
+                                            self.long = long
+                                            print(lat, long)
+                                            
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                     let korisnik = PFUser.query()
                     korisnik?.getObjectInBackground(withId: self.korisnikId, block: { (object, error) in
                         if let err = error {
@@ -66,8 +83,6 @@ class DetaliRabotaViewController: UIViewController,UIImagePickerControllerDelega
                             }
                         }
                     })
-                    
-                    
                 }
             }
         }
@@ -75,13 +90,13 @@ class DetaliRabotaViewController: UIViewController,UIImagePickerControllerDelega
     
 
     @IBAction func konLokacijaPressed(_ sender: Any) {
-        let latitude:CLLocationDegrees = (koordinati?.latitude)!
-        let longitude:CLLocationDegrees = (koordinati?.longitude)!
+        let latitude:CLLocationDegrees = lat
+        let longitude:CLLocationDegrees = long 
         
         let regionDistance:CLLocationDistance = 1000;
         let coordinates = CLLocationCoordinate2DMake(latitude,longitude)
         let regionSpan = MKCoordinateRegion(center: coordinates,latitudinalMeters: regionDistance,longitudinalMeters: regionDistance)
-        let options = [ MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center), MKLaunchOptionsMapCenterKey: NSValue(mkCoordinateSpan: regionSpan.span)]
+        let options = [ MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center), MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)]
         let placemark = MKPlacemark(coordinate: coordinates)
         let mapItem = MKMapItem(placemark: placemark)
         mapItem.name = "Defekt"

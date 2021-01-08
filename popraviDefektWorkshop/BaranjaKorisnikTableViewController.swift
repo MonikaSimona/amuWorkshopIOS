@@ -16,6 +16,8 @@ class BaranjaKorisnikTableViewController: UITableViewController {
     var objectIds = [String]()
     var lokacijaKorisnik: String = ""
     var koordinati: CLLocationCoordinate2D? = nil
+    var long: Double = 0
+    var lat: Double = 0
    
 
     override func viewDidLoad() {
@@ -81,7 +83,9 @@ class BaranjaKorisnikTableViewController: UITableViewController {
                 let baranje = segue.destination as! DetaliBaranjeKorisnikViewController
                 baranje.baranjeId = objectIds[index]
                 baranje.lokacijaKorisnik = lokacijaKorisnik
-                baranje.koordinati = koordinati
+//                baranje.koordinati = koordinati
+                baranje.long = long
+                baranje.lat = lat
                 
             }
         }
